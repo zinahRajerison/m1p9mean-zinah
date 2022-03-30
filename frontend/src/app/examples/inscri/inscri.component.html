@@ -1,0 +1,91 @@
+
+<div class="page-header" filter-color="black">
+        <div class="page-header-image" style="background-image:url(assets/img/bg8.jpg)"></div>
+        <div class="container">
+            <div class="col-md-4 content-center">
+                <div class="card card-login card-plain">
+                    <form #login="ngForm" (ngSubmit)="submit(login)" class="form" >
+                        <div class="header header-primary text-center">
+                            <div class="logo-container">
+                                <img src="assets/img/default-avatar.png" alt="">
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Prenom"   [(ngModel)] = "prenom" name="prenom" >
+                                <input type="text" class="form-control" placeholder="Nom"   [(ngModel)] = "nom" name="nom" >
+                            </div>
+                            <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">  <i class="now-ui-icons ui-1_email-85"></i></span>
+                                </div>
+                                <input type="mail" class="form-control" placeholder="Adresse e-mail"  [(ngModel)] = "mail" name="mail"  >
+                             </div>
+                            <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus1===true}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="now-ui-icons text_caps-small"></i></span>
+                                </div>
+                                <input type="password" placeholder="Mot de passe" class="form-control"  [(ngModel)] = "mdp" name="mdp" />
+                            </div>
+                            <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus1===true}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="now-ui-icons text_caps-small"></i></span>
+                                </div>
+                                <input type="password" placeholder= "Confirmer mot de passe"class="form-control"  name="mdp2" />
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" [(ngModel)] = "checkbox" name="prenom" >
+                                    <span class="form-check-sign"></span>
+                                    J'accepte les termes et conditions de vente
+                                </label>
+                            </div>
+                        </div>
+                        <div class="footer text-center">
+                            <button class="btn btn-primary btn-round btn-lg btn-block"type="submit">S'inscrire</button>
+                        </div>
+                        <div class="pull-left">
+                            <h6>
+                               Deja un compte? <a href="/examples/login" class="link">Se connecter</a>
+                            </h6>
+                        </div>
+                        <div class="pull-right">
+                            <h6>
+                                <a href="#pablo" class="link">Need Help?</a>
+                            </h6>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li><a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-google-plus"></i></a>
+                            <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
+                            <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.creative-tim.com/about-us">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://blog.creative-tim.com">
+                                Blog
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright">
+                    &copy;
+                  {{data | date: 'yyyy'}}, Rajerison Lalao Zinah
+                </div>
+            </div>
+        </footer>
+    </div>
+    
