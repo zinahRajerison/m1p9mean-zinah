@@ -11,6 +11,9 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ExamplesComponent } from './examples.component';
 import { InscriComponent } from './inscri/inscri.component';
+import { CommandeComponent } from './commande/commande.component';
+import { PlatComponent } from './plat/plat.component';
+import { PanierComponent } from './panier/panier.component';
 
 @NgModule({
     imports: [
@@ -28,7 +31,10 @@ import { InscriComponent } from './inscri/inscri.component';
         LoginComponent,
         ExamplesComponent,
         ProfileComponent,
-        InscriComponent
+        InscriComponent,
+        CommandeComponent,
+        PlatComponent,
+        PanierComponent
     ]
 })
 export class ExamplesModule { }

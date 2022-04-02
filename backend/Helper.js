@@ -2,7 +2,7 @@
 const MongoClient = require('mongodb').MongoClient
 // var connectString="mongodb+srv://<m1p9mean-zinah>:<123456>@<clustername>-rmp3c.mongodb.net/test?retryWrites=true&w=majority"
 const url = 'mongodb://127.0.0.1:27017'
-const dbName = 'test'
+const dbName = 'ekaly'
 
 class Helper{
     seConnecter=function(){

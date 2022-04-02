@@ -1,0 +1,180 @@
+<div class="wrapper">
+    <div class="page-header page-header-small" filter-color="orange">
+        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/bg6.jpg') ;">
+        </div>
+        <div class="container">
+            <div class="content-center">
+                <h3 class="title">Commander dans des restaurants</h3>
+                    <form class="form" method="" action="">
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3">
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="form-group">
+                                    <input type="text" value="" placeholder="Nom du resto" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="form-group">
+                                    <input type="text" value="" placeholder="Categorie du plat" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3">
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="form-group">
+                                    <input type="text" value="" placeholder="Nom plat" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="form-group">
+                                    <input type="number" value="" placeholder="Prix" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#button" class="btn btn-primary btn-round btn-lg" >Rechercher</a>
+                    </form>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="title text-center">Restaurants disponibles</h4>
+                    <div class="row">
+                     <div class="col-md-4 ml-auto col-xl-6 mr-auto">
+                        <div class="card"  *ngFor="let resto of restos">
+                            <!-- <form  method="GET" #login="ngForm" (ngSubmit)="explorer(login)"> -->
+                                <div class="nav-tabs-navigation">
+                                    <div class="nav-tabs-wrapper">
+                                        <ngb-tabset [justify]="'center'" class="text-center">
+                                            <ngb-tab>
+                                                <ng-template ngbTabTitle>
+                                                <i class="now-ui-icons objects_umbrella-13"></i> Restaurant
+                                                </ng-template>
+                                                <ng-template ngbTabContent>
+                                                    <p> Nom du  resto: {{resto.nomResto}}</p>
+                                                    <p> Adresse: {{resto.adresse}}</p>
+                                                    <p> Adresse: {{resto._id}}</p>
+                                                    <!-- <input type="hidden" class="form-control" value="resto._id" [(ngModel)] = "idResto" name="idResto" > -->
+                                                </ng-template>
+                                            </ngb-tab>
+                                            <ngb-tab>
+                                                <ng-template ngbTabTitle>
+                                                <i class="now-ui-icons shopping_cart-simple"></i> Plats
+                                                </ng-template>
+                                                <ng-template ngbTabContent>
+                                                    <p *ngFor="let plats of resto.plat">{{plats.nom}}</p>
+                                                </ng-template>
+                                            </ngb-tab>
+                                        </ngb-tabset>
+                                        <!-- <button class="btn btn-default" type="submit" >Explorer</button> -->
+                                        <a href="{{'/examples/plat/'+resto._id}}">Explorer</a>
+                                    </div>
+                                </div>
+                            <!-- </form> -->
+                           
+                        </div>
+                        </div>
+                    </div>
+                    <ngb-pagination [collectionSize]="100" [(page)]="page" aria-label="Default pagination" class="pagination-primary"></ngb-pagination>
+
+                        <ngb-tabset [justify]="'center'" type="pills" class="nav nav-pills nav-pills-primary  nav-pills-just-icons justify-content-center tab-space">
+                            <ngb-tab>
+                            <ng-template ngbTabTitle>
+                                <i class="now-ui-icons design_image"></i>
+                            </ng-template>
+                                <ng-template ngbTabContent>
+                                <div class="row">
+                                    <div class="col-md-10 ml-auto mr-auto">
+                                        <div class="row collections">
+                                            <div class="col-md-6">
+                                                <img src="assets/img/bg1.jpg" alt="" class="img-raised">
+                                                <img src="assets/img/bg3.jpg" alt="" class="img-raised">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">
+                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </ng-template>
+                            </ngb-tab>
+                            <ngb-tab>
+                            <ng-template ngbTabTitle>
+                                <i class="now-ui-icons location_world"></i>
+                            </ng-template>
+                                <ng-template ngbTabContent>
+                                <div class="row">
+                                    <div class="col-md-10 ml-auto mr-auto">
+                                        <div class="row collections">
+                                            <div class="col-md-6">
+                                                <img src="assets/img/bg6.jpg" class="img-raised">
+                                                <img src="assets/img/bg11.jpg" alt="" class="img-raised">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">
+                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </ng-template>
+                            </ngb-tab>
+                            <ngb-tab>
+                            <ng-template ngbTabTitle>
+                                <i class="now-ui-icons sport_user-run"></i>
+                            </ng-template>
+                                <ng-template ngbTabContent>
+                                <div class="row">
+                                    <div class="col-md-10 ml-auto mr-auto">
+                                        <div class="row collections">
+                                            <div class="col-md-6">
+                                                <img src="assets/img/bg3.jpg" alt="" class="img-raised">
+                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">
+                                                <img src="assets/img/bg6.jpg" class="img-raised">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </ng-template>
+                            </ngb-tab>
+                        </ngb-tabset>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer footer-default">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-google-plus"></i></a>
+                        <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
+                        <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.creative-tim.com/about-us">
+                            About Us
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://blog.creative-tim.com">
+                            Blog
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright">
+                &copy;
+                {{data | date: 'yyyy'}}, Rajerison Lalao Zinah
+            </div>
+        </div>
+    </footer>
+</div>

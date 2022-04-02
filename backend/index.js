@@ -5,6 +5,7 @@ var optionsCors={"CorsOrigins":"*"}
 var bodyParser= require('body-parser')
 var helper=require("./Helper.js")
 var func=require("./Function.js")
+var reponse=require("./Response.js")
 
 app.set("view engine",'jade');
 app.use(bodyParser.json());
@@ -28,13 +29,33 @@ app.post('/register',function(req,res){
 app.get('/findResto',function(req,res){
     var fonc=new func();
     console.log(req.body)
-    fonc.findAll('test').then(function(results){
-        res.send(results);
-    }).catch( error => console.error(error))
-    // console.log(req.body)
-    // res.render('index',{title:'Hey',message:'Hello there!'})
+    fonc.findAll('Resto').then(function(results){
+    var toRespond =new reponse(200,"Data gotten successfully",results);
+    // toRespond.setStatus(200);
+    // toRespond.setMessage("Data gotten successfully");
+    // toRespond.setData(results);
+    res.send(toRespond);
+    }).catch( function(error){
+        var toRespond =new reponse(400,error,null);
+        res.send(toRespond)
+    })
 });
 
+app.get('/findPlat/:id',function(req,res){
+    var fonc=new func();
+    var idResto = Number(req.params.id);
+    console.log(idResto)
+    fonc.findPlat(idResto).then(function(results){
+    var toRespond = new reponse(200,"Data gotten successfully",results);
+    // toRespond.setStatus(200);
+    // toRespond.setMessage("Data gotten successfully");
+    // toRespond.setData(results);
+    res.send(toRespond);
+    }).catch( function(error){
+        var toRespond =new reponse(400,error,null);
+        res.send(toRespond)
+    })
+});
 app.listen(3000,function(){
     console.log('Example app listening on port 3000')
 });

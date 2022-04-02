@@ -22,4 +22,24 @@ export class ClientService {
     console.log(body);
     return this.http.post(base_url + '/register', body);
   }
+  
+  getRestos () {
+    // const options = this.toolServ.formOption();
+    return this.http.get(base_url+'/findResto');
+  }
+  getPlats(idResto){
+    return this.http.get(base_url+'/findPlat/'+idResto);
+  }
+  getPanier()
+  {
+    var values=[],
+      keys=Object.keys(localStorage),
+      i=keys.length;
+    while(i--){
+      values.push(JSON.parse(localStorage.getItem(keys[i])));
+    }
+    console.log(values);
+    return values;
+
+  }
 }
