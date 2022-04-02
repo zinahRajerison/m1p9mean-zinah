@@ -1,5 +1,6 @@
 
 var helper=require("./Helper.js")
+var nodemailer=require('nodemailer');
 
 class Function{
     findAll =function(table){
@@ -21,7 +22,7 @@ class Function{
             new helper().seConnecter().then(function(db){
                 var query = {_id:idResto}
                 console.log(query)
-                db.collection("Resto").findOne(query)
+                db.collection("resto").findOne(query)
                 .then(results => {
                     resolve(results);
                 })
@@ -30,7 +31,24 @@ class Function{
                 error => console.log("Connexion base de donnee echouee")
             )
         })
-        
+    }
+    sendMail = function(mail){
+        return new Promise(function(resolve,reject){
+            var transporter=nodemailer.createTransport({service:'gmail',auth:{user:'huhu@gmail.com',pass:'huhu'}});
+            var mailOptions={
+                from:'huhu@gmail.com',
+                to:mail,
+                subject:'e-kaly Validation Commande'
+                text:'Cliquez ce liem pour valider votre derniere commande sur e-kaly'
+            }
+            transporter.sendMail(mailOptions,function(error,info){
+                if(error){
+                    reject(error)
+                }else{
+                    resolve('E-mail sent:'+info.response)
+                }
+            })
+        })
     }
     
 }

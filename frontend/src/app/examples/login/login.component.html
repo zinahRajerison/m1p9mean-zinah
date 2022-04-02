@@ -15,13 +15,13 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">  <i class="now-ui-icons ui-1_email-85"></i></span>
                         </div>
-                          <input type="mail" class="form-control" placeholder="Adresse e-mail" (focus)="focus=true" (blur)="focus=false" >
+                          <input type="mail" class="form-control" placeholder="Adresse e-mail" [(ngModel)]="mail" name="mail">
                       </div>
                       <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus1===true}">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="now-ui-icons text_caps-small"></i></span>
                         </div>
-                          <input type="password" placeholder="Mot de passe" class="form-control" (focus)="focus1=true" (blur)="focus1=false"/>
+                          <input type="password" placeholder="Mot de passe" class="form-control" [(ngModel)]="mdp" name="mdp" />
                       </div>
                     </div>
                     <div class="footer text-center">

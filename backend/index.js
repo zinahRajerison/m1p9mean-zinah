@@ -29,7 +29,7 @@ app.post('/register',function(req,res){
 app.get('/findResto',function(req,res){
     var fonc=new func();
     console.log(req.body)
-    fonc.findAll('Resto').then(function(results){
+    fonc.findAll('resto').then(function(results){
     var toRespond =new reponse(200,"Data gotten successfully",results);
     // toRespond.setStatus(200);
     // toRespond.setMessage("Data gotten successfully");

@@ -40,6 +40,14 @@ export class ClientService {
     }
     console.log(values);
     return values;
-
+  }
+  connect (mail : string, mdp : string) {
+    const options = this.toolServ.formOption();
+    
+    let body : any = {
+      'mail' : mail,
+      'mdp' : mdp
+    };
+    return this.http.post(base_url + '/Client/login', body, options);
   }
 }
