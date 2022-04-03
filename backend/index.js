@@ -6,6 +6,7 @@ var bodyParser= require('body-parser')
 var helper=require("./Helper.js")
 var func=require("./Function.js")
 var reponse=require("./Response.js")
+var client=require('./Client.js')
 
 app.set("view engine",'jade');
 app.use(bodyParser.json());
@@ -22,8 +23,17 @@ app.post('/register',function(req,res){
     var connex=new helper();
     console.log(req.body)
     connex.sinscrire(req.body,'test')
-   
     res.send(req.body)
+});
+
+app.post('/login',function(req,res){
+    // var customer=new client(req.body.mail,req.body.mdp)
+    // console.log(customer.mail)
+    new func().seLogger(req.body.mail,req.body.mdp).then(function(user){
+        res.send(user)
+    }).catch(function(error){
+        res.send(error)
+    })
 });
 
 app.get('/findResto',function(req,res){

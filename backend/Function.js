@@ -1,6 +1,7 @@
 
 var helper=require("./Helper.js")
 var nodemailer=require('nodemailer');
+var md5=require('md5')
 
 class Function{
     findAll =function(table){
@@ -38,7 +39,7 @@ class Function{
             var mailOptions={
                 from:'huhu@gmail.com',
                 to:mail,
-                subject:'e-kaly Validation Commande'
+                subject:'e-kaly Validation Commande',
                 text:'Cliquez ce liem pour valider votre derniere commande sur e-kaly'
             }
             transporter.sendMail(mailOptions,function(error,info){
@@ -48,6 +49,21 @@ class Function{
                     resolve('E-mail sent:'+info.response)
                 }
             })
+        })
+    }
+     seLogger =function(mail,mdp){
+        return new Promise(function(resolve,reject){
+            new helper().seConnecter().then(function(db){
+                var nvmdp=md5(mdp)
+                var query = {mail:mail,mdp:nvmdp}
+                db.collection('test').findOne(query)
+                .then(result => {
+                    resolve(result)
+                })
+                .catch(error => console.error(error))
+            }).catch(
+                error => console.log("Connexion base de donnee echouee")
+            )
         })
     }
     
