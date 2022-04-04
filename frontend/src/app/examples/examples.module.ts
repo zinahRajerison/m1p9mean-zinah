@@ -14,6 +14,7 @@ import { InscriComponent } from './inscri/inscri.component';
 import { CommandeComponent } from './commande/commande.component';
 import { PlatComponent } from './plat/plat.component';
 import { PanierComponent } from './panier/panier.component';
+import { ValidationCommandeComponent } from './validation-commande/validation-commande.component';
 
 @NgModule({
     imports: [
@@ -34,7 +35,8 @@ import { PanierComponent } from './panier/panier.component';
         InscriComponent,
         CommandeComponent,
         PlatComponent,
-        PanierComponent
+        PanierComponent,
+        ValidationCommandeComponent
     ]
 })
 export class ExamplesModule { }

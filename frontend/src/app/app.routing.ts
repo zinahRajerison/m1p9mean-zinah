@@ -12,6 +12,7 @@ import { CommandeComponent } from './examples/commande/commande.component';
 import { PlatComponent } from './examples/plat/plat.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 import { PanierComponent } from './examples/panier/panier.component';
+import { ValidationCommandeComponent } from './examples/validation-commande/validation-commande.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes =[
     { path: 'examples/restos',     component: CommandeComponent },
     { path: 'examples/plat/:id',     component: PlatComponent },
     { path: 'examples/panier',     component: PanierComponent },
+    { path: 'examples/validationCommande',     component: ValidationCommandeComponent }
 ];
 
 @NgModule({

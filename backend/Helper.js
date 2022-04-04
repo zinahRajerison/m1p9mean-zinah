@@ -34,5 +34,17 @@ class Helper{
             error => console.log("Connexion base de donnee echouee")
         )
     }
+    insert = function(ainserer,table){
+        this.seConnecter().then(function(db){
+            const test = db.collection(table)
+            test.insertOne(ainserer)
+            .then(result => {
+                console.log(result)
+            })
+            .catch(error => console.error(error))
+        }).catch(
+            error => console.log("Connexion base de donnee echouee")
+        )
+    }
 }
 module.exports=Helper;

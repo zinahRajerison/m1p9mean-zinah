@@ -1,18 +1,135 @@
-<table>
-    <tr>
-        <th>#</th>
-        <th>Nom plat</th>
-        <th>Prix Unitaire</th>
-        <th>Nombre</th>
-        <th>Total</th>
-    </tr>
-    
-    <tr *ngFor="let panier of paniers; let i=index"> 
-        <td>{{i+1}}</td>
-        <td>{{panier.nom}}</td>
-        <td>{{panier.prix}}</td>
-        <td>{{panier.nbre}}</td>
-        <td>{{panier.prix*panier.nbre}}</td>
-    </tr>
-</table>
-<button class="btn btn-primary btn-round btn-lg btn-block"type="submit" (click)="validerCommande()" >Valider commande</button>
+<div class="wrapper">
+    <div class="page-header page-header-small" filter-color="orange">
+        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/bg6.jpg') ;">
+        </div><div class="container">
+                <div class="content-center">
+                    <h3 class="title">Commander dans des restaurants</h3>
+                        <form class="form" method="" action="">
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-3">
+                                </div>
+                                <div class="col-sm-6 col-lg-3">
+                                    <div class="form-group">
+                                        <input type="text" value="" placeholder="Nom du resto" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-3">
+                                    <div class="form-group">
+                                        <input type="text" value="" placeholder="Categorie du plat" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-3">
+                                </div>
+                                <div class="col-sm-6 col-lg-3">
+                                    <div class="form-group">
+                                        <input type="text" value="" placeholder="Nom plat" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-3">
+                                    <div class="form-group">
+                                        <input type="number" value="" placeholder="Prix" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#button" class="btn btn-primary btn-round btn-lg" >Rechercher</a>
+                        </form>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <div class="table-responsive">
+                    <table class="table table-shopping" ng-init="total=0">
+                        <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th></th>
+                                <th>Plat</th>
+                                <th >P.U</th>
+                                <th >Quantite</th>
+                                <th >Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let panier of paniers; let i=index">
+                                <td>{{i+1}}</td>
+                                <td>
+                                    <div class="img-container">
+                                        <img src="" alt="..." width="20px">
+                                    </div>
+                                </td>
+                                <td class="td-name">
+                                    <a href="#jacket">{{panier.nom}}</a>
+                                    <br><small>by Dolce&amp;Gabbana</small>
+                                </td>
+                                <td class="td-number">
+                                    {{panier.prix}} <small>Ar</small>
+                                </td>
+                                <td>{{panier.nbre}}
+                                    <div class="btn-group">
+                                        <button class="btn btn-info btn-sm"> <i class="now-ui-icons ui-1_simple-delete"></i> </button>
+                                        <button class="btn btn-info btn-sm"> <i class="now-ui-icons ui-1_simple-add"></i> </button>
+                                    </div>
+                                </td>
+                                <td ng-init="total = total+(panier.nbre*panier.prix)">{{panier.nbre*panier.prix}} <small>Ar</small></td>
+                                <td class="td-actions">
+                                    <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-neutral btn-just-icon">
+                                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button type="submit" class="btn btn-primary"(click)="validerCommande()">Valider</button>
+
+                <!-- <p>
+                    <a class="btn btn-primary" data-toggle="collapse" href="./examples/panier#collapseExample" target="_self" aria-expanded="false" aria-controls="collapseExample">
+                        Link with href
+                    </a>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Button with data-target
+                    </button>
+                </p>
+                <div id="collapseExample">
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Lieu de livraison</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                <small id="emailHelp" class="form-text text-muted">Frais de livraison : 3000 Ar</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary"(click)="validerCommade()">Valider</button>
+                        </form>
+                </div> -->
+            </div>
+        </div>
+        <footer class="footer footer-default">
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li><a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-google-plus"></i></a>
+                            <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
+                            <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.creative-tim.com/about-us">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://blog.creative-tim.com">
+                                Blog
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright">
+                    &copy;
+                    {{data | date: 'yyyy'}}, Rajerison Lalao Zinah
+                </div>
+            </div>
+        </footer>
+    </div>

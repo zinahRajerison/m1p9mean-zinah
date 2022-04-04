@@ -1,0 +1,67 @@
+<div class="wrapper">
+    <div class="section">
+        <div class="container">
+            <form class="form-inline">
+                Lieu de livraison
+                <div class="form-group mx-sm-3">
+                    <label for="inputPassword2" class="sr-only">Lieu de livraison</label>
+                    <input type="text" class="form-control" id="inputPassword2" placeholder="Lieu" [(ngModel)]="lieuLivraison" name="lieuLivraison">
+                </div>
+                <button type="submit" class="btn btn-primary" (click)="insererCommande()">Confirmer</button>
+            </form>
+            <p >FACTURE</p>
+            <div class="table-responsive">
+                <table class="table table-shopping" ng-init="total=0">
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th></th>
+                            <th>Plat</th>
+                            <th >P.U</th>
+                            <th >Quantite</th>
+                            <th >Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let panier of paniers; let i=index">
+                                <td>{{i+1}}</td>
+                                <td>
+                                    <div class="img-container">
+                                        <img src="" alt="..." width="20px">
+                                    </div>
+                                </td>
+                                <td class="td-name">
+                                    <a href="#jacket">{{panier.nom}}</a>
+                                    <br><small>by Dolce&amp;Gabbana</small>
+                                </td>
+                                <td class="td-number">
+                                    {{panier.prix}} <small>Ar</small>
+                                </td>
+                                <td>{{panier.nbre}}
+                                </td>
+                                <td ng-init="total = total+(panier.nbre*panier.prix)">{{panier.nbre*panier.prix}} <small>Ar</small></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Frais de livraison</td>
+                                <td> </td>
+                                <td></td>
+                                <td> 3000 <small>Ar</small></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Total</td>
+                                <td> </td>
+                                <td></td>
+                                <td> {{total}} <small>Ar</small></td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

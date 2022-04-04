@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class PanierComponent implements OnInit {
 paniers:any[]
 error_msg:string
+public gfg = false;
   constructor(public ClientServ:ClientService,public router : Router) { }
 
   ngOnInit(): void {
@@ -23,8 +24,8 @@ error_msg:string
         this.router.navigate(['/examples/login']);
     }
     else{
-      
       alert("Veuillez confirmer votre commande via email");
+      this.router.navigate(['/examples/validationCommande']);
     }
   }
 

@@ -41,6 +41,15 @@ export class ClientService {
     console.log(values);
     return values;
   }
+  getTotal(paniers)
+  {
+    var total=0
+    for(let i=0;i<paniers.length;i++)
+    {
+       total=total+(paniers[i].prix*paniers[i].nbre)
+    }
+    return total+3000;
+  }
   connect (mail : string, mdp : string) {
     const options = this.toolServ.formOption();
     
@@ -49,5 +58,16 @@ export class ClientService {
       'mdp' : mdp
     };
     return this.http.post(base_url + '/Client/login', body, options);
+  }
+  insertCommande(paniers,lieuLivraison)
+  {
+    let body:any ={
+      'client':sessionStorage.getItem("user"),
+      'lieuLivraison':lieuLivraison,
+      'plats':paniers,
+      'dateCommande': Date.now()
+    };
+    console.log(body);
+    return this.http.post(base_url + '/insertCommande', body);
   }
 }
