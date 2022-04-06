@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="wrapper">
     <div class="page-header page-header-small" filter-color="orange">
         <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/bg6.jpg') ;">
@@ -33,7 +34,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#button" class="btn btn-primary btn-round btn-lg" >Rechercher</a>
+                            <a href="#button" class="btn btn-round btn-lg" >Rechercher</a>
                         </form>
                 </div>
             </div>
@@ -70,13 +71,15 @@
                                 </td>
                                 <td>{{panier.nbre}}
                                     <div class="btn-group">
-                                        <button class="btn btn-info btn-sm"> <i class="now-ui-icons ui-1_simple-delete"></i> </button>
-                                        <button class="btn btn-info btn-sm"> <i class="now-ui-icons ui-1_simple-add"></i> </button>
+                                        <!-- <input type="hidden" [(ngModel)]="idResto" name="idResto" value="{{panier.nbre}}">
+                                        <input type="hidden" [(ngModel)]="idPlat" name="idResto" value="{{panier.idPlat}}"> -->
+                                        <button class="btn btn-info btn-sm" (click)="enlever(panier.idResto,panier._id)"> <i class="now-ui-icons ui-1_simple-delete"></i> </button>
+                                        <button class="btn btn-info btn-sm" (click)="ajouter(panier.idResto,panier._id)"> <i class="now-ui-icons ui-1_simple-add"></i> </button>
                                     </div>
                                 </td>
                                 <td ng-init="total = total+(panier.nbre*panier.prix)">{{panier.nbre*panier.prix}} <small>Ar</small></td>
                                 <td class="td-actions">
-                                    <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-neutral btn-just-icon">
+                                    <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-neutral btn-just-icon" (click)="effacer(panier.idResto,panier._id)">
                                         <i class="now-ui-icons ui-1_simple-remove"></i>
                                     </button>
                                 </td>
@@ -84,26 +87,8 @@
                         </tbody>
                     </table>
                 </div>
-                <button type="submit" class="btn btn-primary"(click)="validerCommande()">Valider</button>
+                <button type="submit" class="btn "(click)="validerCommande()">Valider</button>
 
-                <!-- <p>
-                    <a class="btn btn-primary" data-toggle="collapse" href="./examples/panier#collapseExample" target="_self" aria-expanded="false" aria-controls="collapseExample">
-                        Link with href
-                    </a>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Button with data-target
-                    </button>
-                </p>
-                <div id="collapseExample">
-                        <form>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Lieu de livraison</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                <small id="emailHelp" class="form-text text-muted">Frais de livraison : 3000 Ar</small>
-                            </div>
-                            <button type="submit" class="btn btn-primary"(click)="validerCommade()">Valider</button>
-                        </form>
-                </div> -->
             </div>
         </div>
         <footer class="footer footer-default">

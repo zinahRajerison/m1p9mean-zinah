@@ -15,6 +15,7 @@ import { CommandeComponent } from './commande/commande.component';
 import { PlatComponent } from './plat/plat.component';
 import { PanierComponent } from './panier/panier.component';
 import { ValidationCommandeComponent } from './validation-commande/validation-commande.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
     imports: [
@@ -36,7 +37,8 @@ import { ValidationCommandeComponent } from './validation-commande/validation-co
         CommandeComponent,
         PlatComponent,
         PanierComponent,
-        ValidationCommandeComponent
+        ValidationCommandeComponent,
+        NavbarComponent
     ]
 })
 export class ExamplesModule { }

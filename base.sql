@@ -28,9 +28,16 @@ db.resto.update({_id:1},
 {'$push':{livreur:{idLivreur:2,nom:"Jeanne",prenom:"Bernardette",username:"Bernardette",mdp:"mdpBernardette"}}})
 -- (idResto,nomResto,mdpResponsable,adresse,logo,plat[](idPlat,nom,details,img,prix,benefice),livreur[](idLivreur,nom,prenom,username,mdp))
 db.resto.findOne({_id:1});
-db.createCollection('client');
--- (idClient,nom,prenom,mail,mdp)
+db.createCollection('typeuser');
+db.user.insertOne({
+    _id:1,username:'Jean',mail:'jean@gmail.com',mdp:'mdpJean',typeuser:'client'
+})
+db.user.insertOne({
+    _id:2,username:'Jean',mail:'jean@gmail.com',mdp:'mdpJean',typeuser:'ekaly'
+})
+
+-- (iduser,username,mail,mdp,type)
 
 db.createCollection('commande');
--- (idCommande,client(id,nom,prenom),dateHCommande,dateHLivraison,livreur,lieuLivraison,CommandeDetail[](idResto,nomPlat,prix,nbre))
+-- (idCommande,client(id,nom,prenom),dateHCommande,livreur,lieuLivraison,status,CommandeDetail[](idResto,nomPlat,prix,nbre))
 

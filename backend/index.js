@@ -47,9 +47,6 @@ app.get('/findResto',function(req,res){
     console.log(req.body)
     fonc.findAll('resto').then(function(results){
     var toRespond =new reponse(200,"Data gotten successfully",results);
-    // toRespond.setStatus(200);
-    // toRespond.setMessage("Data gotten successfully");
-    // toRespond.setData(results);
     res.send(toRespond);
     }).catch( function(error){
         var toRespond =new reponse(400,error,null);
@@ -63,9 +60,6 @@ app.get('/findPlat/:id',function(req,res){
     console.log(idResto)
     fonc.findPlat(idResto).then(function(results){
     var toRespond = new reponse(200,"Data gotten successfully",results);
-    // toRespond.setStatus(200);
-    // toRespond.setMessage("Data gotten successfully");
-    // toRespond.setData(results);
     res.send(toRespond);
     }).catch( function(error){
         var toRespond =new reponse(400,error,null);
@@ -78,6 +72,16 @@ app.post('/insertCommande',function(req,res){
     console.log(req.body)
     connex.insert(req.body,'commande')
     res.send(new reponse(200,"Commande validee",null))
+});
+app.get('/findCommande',function(req,res){
+    var fonc=new func();
+    fonc.findPlat(idResto).then(function(results){
+    var toRespond = new reponse(200,"Data gotten successfully",results);
+    res.send(toRespond);
+    }).catch( function(error){
+        var toRespond =new reponse(400,error,null);
+        res.send(toRespond)
+    })
 });
 
 app.listen(3000,function(){

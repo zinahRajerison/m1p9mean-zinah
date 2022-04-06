@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent" >
+<nav class="navbar navbar-expand-lg bg-white fixed-top navbar-transparent" >
     <div class="container">
       <div class="dropdown button-dropdown">
         <div ngbDropdown>
@@ -37,10 +37,19 @@
                   </a>
               </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/examples/login">
-                      <i class="now-ui-icons files_paper"></i>
-                      <p> S'inscrire</p>
-                    </a>
+                    <div *ngIf="login; then inscription else deconnexion"></div> 
+                    <ng-template #inscription>
+                        <a class="nav-link" href="/examples/login">
+                            <i class="now-ui-icons files_paper"></i>
+                            <p> S'inscrire</p>
+                        </a>
+                    </ng-template>
+                    <ng-template #deconnexion>
+                        <a class="nav-link" href="/examples/deconnexion">
+                            <i class="now-ui-icons files_paper"></i>
+                            <p> Log out</p>
+                        </a>
+                    </ng-template>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="/examples/restos" >

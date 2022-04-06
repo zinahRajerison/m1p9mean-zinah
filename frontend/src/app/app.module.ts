@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
+import { RestoModule } from './resto/resto.module';
 import {HttpClient,HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -24,7 +25,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
         AppRoutingModule,
         ComponentsModule,
         ExamplesModule,
-        HttpClientModule
+        HttpClientModule,
+        RestoModule
     ],
     providers: [],
     bootstrap: [AppComponent]

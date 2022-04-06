@@ -44,7 +44,7 @@ indexPlat:any
     console.log(panier)
     var ainserer=this.plats[panier]
     ainserer.nbre=1
-    ainserer.idRest=this.idResto
-    localStorage.setItem(ainserer.nom,JSON.stringify(ainserer));
+    ainserer.idResto=this.idResto
+    localStorage.setItem(ainserer.idResto+ainserer._id,JSON.stringify(ainserer));
   }
 }

@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg bg-white fixed-top navbar-transparent" >
+        <div class="container">
+          <div class="dropdown button-dropdown">
+            <div ngbDropdown>
+              <a class="dropdown-toggle" ngbDropdownToggle>
+                  <span class="button-bar"></span>
+                  <span class="button-bar"></span>
+                  <span class="button-bar"></span>
+              </a>
+               <div ngbDropdownMenu>
+                 <a class="dropdown-header">Dropdown header</a>
+                 <a class="dropdown-item" href="#">Acheter vos plats en ligne</a>
+                 <a class="dropdown-item" href="#">Importer votre restaurant en ligne</a>
+                 <div class="dropdown-divider"></div>
+                 <a class="dropdown-item" href="#">Separated link</a>
+                 <div class="dropdown-divider"></div>
+                 <a class="dropdown-item" href="#">One more separated link</a>
+               </div>
+             </div>
+          </div>
+            <div class="navbar-translate">
+                <a class="navbar-brand" [routerLink]="['/index']" placement="bottom" ngbTooltip="Designed by Invision. Coded by Creative Tim">
+                    e-Kaly
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" data-nav-image="assets/img/blurred-image-1.jpg" data-color="orange">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                      <a class="nav-link" href="/examples/landing">
+                          <i class="now-ui-icons arrows-1_cloud-download-93"></i>
+                          <p> Nos offres</p>
+                      </a>
+                  </li>
+                    <li class="nav-item">
+                        <div *ngIf="login; then inscription else deconnexion"></div> 
+                        <ng-template #inscription>
+                            <a class="nav-link" href="/examples/login">
+                                <i class="now-ui-icons files_paper"></i>
+                                <p> S'inscrire</p>
+                            </a>
+                        </ng-template>
+                        <ng-template #deconnexion>
+                            <a class="nav-link" href="/examples/deconnexion">
+                                <i class="now-ui-icons files_paper"></i>
+                                <p> Log out</p>
+                            </a>
+                        </ng-template>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/examples/restos" >
+                            <i class="now-ui-icons arrows-1_share-66"></i>
+                            <p> Acheter</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-neutral" href="/examples/panier" >
+                            <i class="now-ui-icons shopping_cart-simple"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    

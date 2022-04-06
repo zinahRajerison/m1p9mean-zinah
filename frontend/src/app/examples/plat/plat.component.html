@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="wrapper">
     <div class="page-header page-header-small" filter-color="orange">
         <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/bg6.jpg') ;">
@@ -45,42 +46,14 @@
                 <div class="col-md-12">
                     <h4 class="title text-center">Plats disponibles</h4>
                     <div class="row">
-                        <div class="col-md-4 ml-auto col-xl-6 mr-auto">
-                        <div class="card"  *ngFor="let plat of plats; let i=index">
-                            <!-- <form  method="GET" #login="ngForm" (ngSubmit)="explorer(login)"> -->
-                                <div class="nav-tabs-navigation">
-                                    <div class="nav-tabs-wrapper">
-                                        <ngb-tabset [justify]="'center'" class="text-center">
-                                            <ngb-tab>
-                                                <ng-template ngbTabTitle>
-                                                <i class="now-ui-icons objects_umbrella-13"></i> Plats
-                                                </ng-template>
-                                                <ng-template ngbTabContent>
-                                                    <p> Nom du  plat: {{plat.nom}}</p>
-                                                    <p> Details: {{plat.details}}</p>
-                                                    <p> Prix: {{plat.prix}}</p>
-                                                    <!-- <input type="hidden" class="form-control" value="resto._id" [(ngModel)] = "idResto" name="idResto" > -->
-                                                </ng-template>
-                                            </ngb-tab>
-                                            <ngb-tab>
-                                                <ng-template ngbTabTitle>
-                                                <i class="now-ui-icons shopping_cart-simple"></i> Plats
-                                                </ng-template>
-                                                <ng-template ngbTabContent>
-                                                    <p>{{plats.nom}}</p>
-                                                </ng-template>
-                                            </ngb-tab>
-                                        </ngb-tabset>
-                                        <!-- <button class="btn btn-default" type="submit" >Explorer</button> -->
-                                        <!-- <form  #login="ngForm" (ngSubmit)="ajouterPanier(login)" class="form">
-                                            <input type="hidden" name="indexPlat" class="form-control" value="{{i}}" [(ngModel)]="indexPlat"> -->
-                                            <button class="btn btn-primary btn-round btn-lg btn-block"type="submit" (click)="ajouterPanier(i)" >Ajouter panier</button>
-                                        <!-- </form> -->
-                                    </div>
-                                </div>
-                            <!-- </form> -->
-                            
-                        </div>
+                        <div class="card text-center"  style="width: 25rem;" *ngFor="let plat of plats; let i=index">
+                            <img class="card-img-top" src="assets/img/bg6.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title"> {{plat.nom}}</h4> 
+                                 <p> Prix: {{plat.prix}} <small>Ar</small></p> 
+                                <p class="card-text">{{plat.details}}</p> 
+                                <button class="btn btn-primary btn-round btn-lg btn-block"type="submit" (click)="ajouterPanier(i)" >Ajouter panier</button>
+                            </div>
                         </div>
                     </div>
                     <ngb-pagination [collectionSize]="100" [(page)]="page" aria-label="Default pagination" class="pagination-primary"></ngb-pagination>

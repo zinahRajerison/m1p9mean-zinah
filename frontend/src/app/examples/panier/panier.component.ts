@@ -11,6 +11,7 @@ export class PanierComponent implements OnInit {
 paniers:any[]
 error_msg:string
 public gfg = false;
+
   constructor(public ClientServ:ClientService,public router : Router) { }
 
   ngOnInit(): void {
@@ -27,6 +28,30 @@ public gfg = false;
       alert("Veuillez confirmer votre commande via email");
       this.router.navigate(['/examples/validationCommande']);
     }
+  }
+  enlever(idResto,idPlat)
+  {
+    var aenlever=JSON.parse(localStorage.getItem(idResto+idPlat));
+    if((aenlever.nbre-1)<0){
+      aenlever.nbre=0
+    }
+    else{
+      aenlever.nbre=aenlever.nbre-1
+    }
+    localStorage.setItem(idResto+idPlat,JSON.stringify(aenlever))
+    window.location.reload()
+  }
+  ajouter(idResto,idPlat)
+  {
+    var aenlever=JSON.parse(localStorage.getItem(idResto+idPlat));
+    aenlever.nbre=aenlever.nbre+1
+    localStorage.setItem(idResto+idPlat,JSON.stringify(aenlever))
+    window.location.reload()
+  }
+  effacer(idResto,idPlat)
+  {
+    localStorage.removeItem(idResto+idPlat)
+    window.location.reload()
   }
 
 }
