@@ -73,9 +73,10 @@ app.post('/insertCommande',function(req,res){
     connex.insert(req.body,'commande')
     res.send(new reponse(200,"Commande validee",null))
 });
-app.get('/findCommande',function(req,res){
+app.get('/findCommande/:id',function(req,res){
     var fonc=new func();
-    fonc.findPlat(idResto).then(function(results){
+    var idResto = Number(req.params.id);
+    fonc.findCommande(idResto).then(function(results){
     var toRespond = new reponse(200,"Data gotten successfully",results);
     res.send(toRespond);
     }).catch( function(error){
@@ -84,6 +85,16 @@ app.get('/findCommande',function(req,res){
     })
 });
 
+app.put('/updateCommande',function(req,res){
+    var fonc=new func();
+    fonc.updateCommande(req.body._id).then(function(results){
+    var toRespond = new reponse(200,"Commande updated successfully",results);
+    res.send(toRespond);
+    }).catch( function(error){
+        var toRespond =new reponse(400,error,null);
+        res.send(toRespond)
+    })
+});
 app.listen(3000,function(){
     console.log('Example app listening on port 3000')
 });

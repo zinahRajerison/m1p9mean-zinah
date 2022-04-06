@@ -8,14 +8,14 @@ import {ClientService} from '../../client.service';
   styleUrls: ['./plat.component.css']
 })
 export class PlatComponent implements OnInit {
-idResto:any
+idResto:number
 plats: any[]
 error_msg:string
 indexPlat:any
   constructor(private route:ActivatedRoute,public ClientServ:ClientService) { }
 
   ngOnInit(): void {
-    this.idResto = this.route.snapshot.paramMap.get('id')
+    this.idResto = parseInt(this.route.snapshot.paramMap.get('id'))
     console.log(this.idResto)
     
     const success = response => {

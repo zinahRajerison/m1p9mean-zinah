@@ -14,6 +14,7 @@ import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.compo
 import { PanierComponent } from './examples/panier/panier.component';
 import { ValidationCommandeComponent } from './examples/validation-commande/validation-commande.component';
 import { TraitementCommandeComponent } from './resto/traitement-commande/traitement-commande.component';
+import { GestionplatComponent } from './resto/gestionplat/gestionplat.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -27,7 +28,8 @@ const routes: Routes =[
     { path: 'examples/plat/:id',     component: PlatComponent },
     { path: 'examples/panier',     component: PanierComponent },
     { path: 'examples/validationCommande',     component: ValidationCommandeComponent },
-    { path: 'resto/commande',     component: TraitementCommandeComponent }
+    { path: 'resto/commande',     component: TraitementCommandeComponent },
+    { path: 'resto/plats',     component: GestionplatComponent }
     
 ];
 

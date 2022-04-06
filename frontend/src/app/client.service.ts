@@ -65,7 +65,7 @@ export class ClientService {
       'client':sessionStorage.getItem("user"),
       'lieuLivraison':lieuLivraison,
       'plats':paniers,
-      'status':'alivrer',
+      'status':'encours',
       'dateCommande': Date.now()
     };
     console.log(body);

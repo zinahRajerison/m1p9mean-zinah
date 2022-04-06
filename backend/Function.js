@@ -2,6 +2,7 @@
 var helper=require("./Helper.js")
 var nodemailer=require('nodemailer');
 var md5=require('md5')
+var ObjectId=require('mongodb').ObjectId;
 
 class Function{
     findAll =function(table){
@@ -30,6 +31,33 @@ class Function{
                 .catch(error => console.error(error))
             }).catch(
                 error => console.log("Connexion base de donnee echouee")
+            )
+        })
+    }
+    findCommande =function(idResto){
+        return new Promise(function(resolve,reject){
+            new helper().seConnecter().then(function(db){
+                var query = {"plats.idResto":idResto,status:"encours"}
+                console.log(query)
+                var sort = {dateCommande:1}
+                db.collection("commande").find(query).sort(sort).toArray()
+                .then(results => {
+                    var ret={
+                        encours:results
+                    }
+                    var query = {"plats.idResto":idResto,status:"alivrer"};
+                    console.log(query);
+                    var sort = {dateCommande:1};
+                    db.collection("commande").find(query).sort(sort).toArray()
+                    .then(results => {
+                        ret.alivrer=results
+                        resolve(ret);
+                    })
+                    .catch(error => console.error(error))
+                })
+                .catch(error => console.error(error))
+            }).catch(
+                error => console.log(error)
             )
         })
     }
@@ -67,5 +95,25 @@ class Function{
         })
     }
     
+    updateCommande =function(idCommande){
+        return new Promise(function(resolve,reject){
+            new helper().seConnecter().then(function(db){
+                var query = {_id: new ObjectId(idCommande)}
+                console.log(query)
+                db.collection("commande").findOneAndUpdate(query,
+                {
+                    $set: {
+                        "status": "alivrer"
+                    }
+                })
+                .then(result => {
+                    resolve(result)
+                })
+                .catch(error => console.error(error))
+            }).catch(
+                error => console.log("Connexion base de donnee echouee")
+            )
+        })
+    }
 }
 module.exports=Function

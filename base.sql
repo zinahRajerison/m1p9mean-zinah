@@ -41,3 +41,5 @@ db.user.insertOne({
 db.createCollection('commande');
 -- (idCommande,client(id,nom,prenom),dateHCommande,livreur,lieuLivraison,status,CommandeDetail[](idResto,nomPlat,prix,nbre))
 
+db.commande.find({"plats.idResto":'2'}).pretty();
+db.commande.findOneAndUpdate({ _id: ObjectId('624d8a98e7ad67ecf8768441') },{$set: {"status": "alivrer"}})

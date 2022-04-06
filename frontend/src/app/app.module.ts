@@ -8,6 +8,7 @@ import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
 import { RestoModule } from './resto/resto.module';
 import {HttpClient,HttpClientModule} from '@angular/common/http';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -26,7 +27,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
         ComponentsModule,
         ExamplesModule,
         HttpClientModule,
-        RestoModule
+        RestoModule,
+        DragDropModule
     ],
     providers: [],
     bootstrap: [AppComponent]
