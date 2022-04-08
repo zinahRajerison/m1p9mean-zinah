@@ -33,7 +33,7 @@ const routes: Routes =[
     { path: 'resto/commande',     component: TraitementCommandeComponent },
     { path: 'resto/plats',     component: GestionplatComponent },
     { path: 'ekaly/livreurs',     component: GestionlivreurComponent },
-    { path: 'ekaly/resto',     component: GestionrestoComponent }
+    { path: 'ekaly/restos',     component: GestionrestoComponent }
     
 ];
 

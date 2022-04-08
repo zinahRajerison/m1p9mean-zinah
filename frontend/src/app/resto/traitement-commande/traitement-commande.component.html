@@ -6,8 +6,8 @@
           <div class="row">
             <div class="col-3">
                 <nav class="nav flex-column">
-                    <a class="nav-link active" href="#">Gestion commande</a>
-                    <a class="nav-link" href="#">Gestion plats</a>
+                    <a class="nav-link active" href="/resto/commande">Gestion commande</a>
+                    <a class="nav-link" href="/resto/plats">Gestion plats</a>
                     <a class="nav-link" href="#">Benefices</a>
                 </nav>
             </div>
@@ -22,7 +22,14 @@
                     class="example-list"
                     cdkDropListSortingDisabled
                     (cdkDropListDropped)="drop($event)">
-                    <div class="example-box" *ngFor="let item of commandesEncours" cdkDrag>{{item.lieuLivraison}}</div>
+                    <div class="example-box" *ngFor="let item of commandesEncours" cdkDrag>
+                        <div class="card" style="width: 20rem;">
+                          {{item.lieuLivraison}}
+                            <ul class="list-group list-group-flush" >
+                              <li class="list-group-item"*ngFor="let plat of item.plats">{{plat.nom}}</li>
+                            </ul>
+                          </div>
+                    </div>
                   </div>
                 </div>
               
@@ -34,7 +41,14 @@
                     [cdkDropListData]="commandesAlivrer"
                     class="example-list"
                     (cdkDropListDropped)="drop($event)">
-                    <div class="example-box" *ngFor="let item of commandesAlivrer" cdkDrag>{{item.lieuLivraison}}</div>
+                    <div class="example-box" *ngFor="let item of commandesAlivrer" cdkDrag>
+                        <div class="card" style="width: 20rem;">
+                          {{item.lieuLivraison}}
+                            <ul class="list-group list-group-flush" >
+                              <li class="list-group-item"*ngFor="let plat of item.plats">{{plat.nom}}</li>
+                            </ul>
+                          </div>
+                    </div>
                   </div>
                 </div>
               </div>  

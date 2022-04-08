@@ -10,6 +10,7 @@ var client=require('./Client.js')
 var plat=require('./Plat.js')
 var mailFunc=require('./functionMail.js')
 var livreur=require('./Livreur.js')
+var Resto=require('./Resto.js')
 
 app.set("view engine",'jade');
 app.use(bodyParser.json());
@@ -25,15 +26,15 @@ app.get('/',function(req,res){
 app.post('/register',function(req,res){
     var connex=new helper();
     console.log(req.body)
-    connex.sinscrire(req.body,'test')
+    connex.sinscrire(req.body,'typeuser')
     res.send(new reponse(200,"Inscription terminee",null))
 });
 
 app.post('/login',function(req,res){
     // var customer=new client(req.body.mail,req.body.mdp)
     // console.log(customer.mail)
-    new func().seLogger(req.body.mail,req.body.mdp).then(function(user){
-        res.send(new reponse(200,"Mail sent successfully",user))
+    new func().seLogger(req.body.mail,req.body.mdp,1).then(function(user){
+        res.send(new reponse(200,"Connected",user))
     }).catch(function(error){
         res.send(new reponse(300,error,null))
     })
@@ -159,13 +160,35 @@ app.put('/modifLivreur',function(req,res)
 
 app.post('/ajoutLivreur',function(req,res){
     new livreur().ajoutLivreur(req.body)
-    res.send(new reponse(200,"Plat ajoute",null))
+    res.send(new reponse(200,"Livreur ajoute",null))
 });
 
 app.post('/deleteLivreur',function(req,res){
     new livreur().deleteLivreur(req.body._id).then(function(result)
     {
-        res.send(new reponse(200,"Plat efface",null))
+        res.send(new reponse(200,"Livreur efface",null))
+    }).catch(function(error){
+        res.send(new reponse(400,"error",null))
+    })
+})
+app.put('/modifResto',function(req,res)
+{
+    new Resto().updateResto(req.body).then(function(results){
+    var toRespond = new reponse(200,"Resto updated successfully",results);
+    res.send(toRespond);
+    }).catch( function(error){
+        var toRespond =new reponse(400,error,null);
+        res.send(toRespond)
+    })
+})
+app.post('/ajoutResto',function(req,res){
+    new Resto().ajoutResto(req.body)
+    res.send(new reponse(200,"Resto ajoute",null))
+});
+app.post('/deleteResto',function(req,res){
+    new Resto().deleteResto(req.body._id).then(function(result)
+    {
+        res.send(new reponse(200,"Resto efface",null))
     }).catch(function(error){
         res.send(new reponse(400,"error",null))
     })

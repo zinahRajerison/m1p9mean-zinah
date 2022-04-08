@@ -38,17 +38,15 @@ class Function{
         return new Promise(function(resolve,reject){
             new helper().seConnecter().then(function(db){
                 var query = {"plats.idResto":idResto,status:"encours"}
-                console.log(query)
                 var sort = {dateCommande:1}
-                db.collection("commande").find(query).sort(sort).toArray()
+                db.collection("commande").find(query) .sort(sort).toArray()
                 .then(results => {
                     var ret={
                         encours:results
                     }
                     var query = {"plats.idResto":idResto,status:"alivrer"};
-                    console.log(query);
-                    var sort = {dateCommande:1};
-                    db.collection("commande").find(query).sort(sort).toArray()
+                    var sort = {dateCommande:1}
+                    db.collection("commande").find(query,sort) .toArray()
                     .then(results => {
                         ret.alivrer=results
                         resolve(ret);
@@ -80,14 +78,20 @@ class Function{
             })
         })
     }
-     seLogger =function(mail,mdp){
+     seLogger =function(mail,mdp,typeUser){
         return new Promise(function(resolve,reject){
             new helper().seConnecter().then(function(db){
                 var nvmdp=md5(mdp)
-                var query = {mail:mail,mdp:nvmdp}
-                db.collection('test').findOne(query)
+                var query = {"users.mail":mail,"users.mdp":nvmdp,"_id":typeUser}
+                console.log(query)
+                db.collection('typeuser').aggregate([
+                    { $unwind: '$users' },
+                    { $match: query},
+                    { $group: { _id: '$_id', users: { $push: '$users' } } },
+                    { $project: { 'users': 1, _id:0 } }
+                  ]) .toArray()
                 .then(result => {
-                    resolve(result)
+                    resolve(result[0].users[0])
                 })
                 .catch(error => console.error(error))
             }).catch(

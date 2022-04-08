@@ -51,6 +51,4 @@ export class InscriComponent implements OnInit {
     this.clientServ.sinscrire(this.nom,this.prenom,this.mail,this.mdp)
         .subscribe(success, error);
   }
-
-
 }

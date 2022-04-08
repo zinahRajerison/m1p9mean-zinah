@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LivreurService } from 'app/livreur.service';
 import { ClientService } from 'app/client.service';
 import { MapsAPILoader } from '@agm/core';
+import { EkalyService } from 'app/ekaly.service';
 
 @Component({
   selector: 'app-gestionlivreur',
@@ -14,7 +14,7 @@ export class GestionlivreurComponent implements OnInit {
   livreurs: any[]
   modif:boolean
   index:0
-    constructor(public LivreurServ:LivreurService) { }
+    constructor(public LivreurServ:EkalyService) { }
   
     ngOnInit(): void {
       this.modif=false

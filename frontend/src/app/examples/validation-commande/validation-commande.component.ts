@@ -24,7 +24,7 @@ error_msg:string
     const success = response => {
       if (response['status'] == 200) {
         console.log(response['data']);
-        localStorage.clear();
+        this.ClientServ.viderPanier()
         // redirection
         this.router.navigate(['/examples/landing']);
       } else {

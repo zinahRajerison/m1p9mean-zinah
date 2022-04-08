@@ -33,13 +33,12 @@ export class LoginComponent implements OnInit {
         navbar.classList.remove('navbar-transparent');
     }
     selogger(){
-        
+        console.log("login")
     const success = response => {
         if (response['status'] == 200) {
           const user = response['data'];
           sessionStorage.setItem("user",JSON.stringify(user));
           this.toolServ.setUser(user);
-          // redirection
           this.router.navigate(['/examples/restos']);
         } else {
           this.error_msg = 'Erreur connexion';

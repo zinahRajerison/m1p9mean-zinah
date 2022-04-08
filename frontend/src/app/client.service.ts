@@ -42,6 +42,17 @@ export class ClientService {
     console.log(values);
     return values;
   }
+  viderPanier()
+  {
+    localStorage.clear();
+    sessionStorage.removeItem("idResto");
+  }
+  ajoutQte(idResto,idPlat)
+  {
+    var aenlever=JSON.parse(localStorage.getItem(idResto+idPlat));
+    aenlever.nbre=aenlever.nbre+1
+    localStorage.setItem(idResto+idPlat,JSON.stringify(aenlever))
+  }
   getTotal(paniers)
   {
     var total=0
@@ -58,7 +69,7 @@ export class ClientService {
       'mail' : mail,
       'mdp' : mdp
     };
-    return this.http.post(base_url + '/Client/login', body, options);
+    return this.http.post(base_url + '/login', body, options);
   }
   insertCommande(paniers,lieuLivraison)
   {

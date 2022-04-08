@@ -3,9 +3,9 @@
     <div class="row">
         <div class="col-3">
             <nav class="nav flex-column">
-                <a class="nav-link active" href="#">Gestion commandes</a>
-                <a class="nav-link" href="#">Gestion livreurs</a>
-                <a class="nav-link" href="#">Benefice</a>
+                <a class="nav-link active" href="/ekaly/livreurs">Gestion commandes</a>
+                <a class="nav-link " href="/ekaly/restos">Gestion restos</a>
+                <a class="nav-link" href="/ekaly/benefice">Benefice</a>
             </nav>
         </div>
         
@@ -57,7 +57,7 @@
                             <a href="#jacket">{{livreur.username}}</a>
                         </td>
                         <td class="td-name">
-                            {{livreur.mdp}} 
+                            {{livreur.mail}} 
                         </td>
                         <td class="td-actions">
                             <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-neutral btn-just-icon" (click)="deleteLivreur(livreur._id,i)">

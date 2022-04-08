@@ -1,1 +1,92 @@
-<p>gestionresto works!</p>
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <nav class="nav flex-column">
+                <a class="nav-link " href="/ekaly/livreurs">Gestion commandes</a>
+                <a class="nav-link active" href="/ekaly/restos">Gestion restos</a>
+                <a class="nav-link" href="/ekaly/benefice">Benefice</a>
+            </nav>
+        </div>
+        
+        <div class="col-6">
+            <form>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Nom Resto</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nom du resto" [(ngModel)]="resto.nomResto" name="resto.nomResto">
+            </div> 
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Adresse</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Adresse du resto" [(ngModel)]="resto.adresse" name="resto.adresse">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Details</label>
+                <textarea type="text" class="form-control" id="exampleFormControlInput1" placeholder="Details" [(ngModel)]="resto.details" name="resto.details"></textarea>
+            </div>
+            <div *ngIf="modif; then modifbtn else insertbtn"></div> 
+            <ng-template #modifbtn>
+                <button type="submit" class="btn"(click)="modifResto()">Modifier</button>
+            </ng-template>
+            <ng-template #insertbtn>
+                <p> Informations Responsable provisoire</p>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Username</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Username" [(ngModel)]="resto.username" name="resto.username">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Mail</label>
+                    <input type="mail" class="form-control" id="exampleFormControlInput1" placeholder="Mail" [(ngModel)]="resto.mail" name="resto.mail">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Mot de passe</label>
+                    <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Mot de passe" [(ngModel)]="resto.mdp" name="resto.mdp">
+                </div>
+                <button type="submit" class="btn"(click)="ajouterResto()">Ajouter</button>
+            </ng-template>
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-shopping" ng-init="total=0">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th></th>
+                        <th>Nom du resto</th>
+                        <th>Adresse</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let resto of restos; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>
+                            <div class="img-container">
+                                <img src="" alt="..." width="20px">
+                            </div>
+                        </td>
+                        <td class="td-name">
+                            <a href="#jacket">{{resto.nomResto}}</a>
+                        </td>
+                        <td class="td-name">
+                            {{resto.adresse}} 
+                        </td>
+                        <td class="td-name">
+                            {{resto.details}} 
+                        </td>
+                        <td class="td-actions">
+                            <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-neutral btn-just-icon" (click)="deleteResto(resto._id,i)">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                            </button>
+                            <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-neutral btn-just-icon" (click)="editResto(i)">
+                               <i class="now-ui-icons files_paper"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

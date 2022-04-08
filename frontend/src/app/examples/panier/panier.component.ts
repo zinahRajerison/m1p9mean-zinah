@@ -43,9 +43,7 @@ public gfg = false;
   }
   ajouter(idResto,idPlat)
   {
-    var aenlever=JSON.parse(localStorage.getItem(idResto+idPlat));
-    aenlever.nbre=aenlever.nbre+1
-    localStorage.setItem(idResto+idPlat,JSON.stringify(aenlever))
+    this.ClientServ.ajoutQte(idResto,idPlat)
     window.location.reload()
   }
   effacer(idResto,idPlat)

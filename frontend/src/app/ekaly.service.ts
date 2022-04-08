@@ -6,7 +6,7 @@ import { base_url } from '../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class LivreurService {
+export class EkalyService {
 
   constructor(public http : HttpClient, public toolServ:HelperService) { }
   
@@ -47,5 +47,44 @@ export class LivreurService {
     }
     console.log(body)
     return this.http.post(base_url+'/deletelivreur',body)
+  }
+  ajoutResto(resto)
+  {
+    let body: any ={
+        'nomResto':resto.nomResto,
+        'adresse':resto.adresse,
+        'details':resto.details,
+        'logo':resto.logo,
+        'responsable':[{
+          '_id':1,
+          'username':resto.username,
+          'mail':resto.mail,
+          'mdp':resto.mdp
+        }]
+    }
+    return this.http.post(base_url+'/ajoutResto',body)
+  }
+  
+  modifResto(resto)
+  {
+    let body: any ={
+      '_id':resto._id,
+      'toUpdate': {
+        'nomResto':resto.nomResto,
+        'adresse':resto.adresse,
+        'details':resto.details,
+        'logo':resto.logo
+      }
+    }
+    console.log(body)
+    return this.http.put(base_url+'/modifResto',body)
+  }
+  deleteResto(idResto)
+  {
+    let body:any={
+      '_id':idResto
+    }
+    console.log(body)
+    return this.http.post(base_url+'/deleteResto',body)
   }
 }
