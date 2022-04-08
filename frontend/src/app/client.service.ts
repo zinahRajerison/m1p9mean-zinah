@@ -28,6 +28,7 @@ export class ClientService {
     return this.http.get(base_url+'/findResto');
   }
   getPlats(idResto){
+    console.log("idResto"+idResto)
     return this.http.get(base_url+'/findPlat/'+idResto);
   }
   getPanier()

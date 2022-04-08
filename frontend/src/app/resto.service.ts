@@ -25,4 +25,43 @@ export class RestoService {
     };
     return this.http.put(base_url+'/updateCommande',body);
   }
+  ajoutPlat(nomPlat,detailsPlat,prix,benefice,idResto)
+  {
+    let body: any ={
+      '_id':idResto,
+      'toUpdate': {
+        'nom':nomPlat,
+        'details':detailsPlat,
+        'prix':prix,
+        'benefice':benefice
+      }
+      
+    }
+    return this.http.post(base_url+'/ajoutPlat',body)
+  }
+  
+  modifPlat(nomPlat,detailsPlat,prix,benefice,idPlat,idResto)
+  {
+    let body: any ={
+      '_id':idResto,
+      'toUpdate': {
+        'nom':nomPlat,
+        'details':detailsPlat,
+        'prix':prix,
+        'benefice':benefice,
+        'idPlat':idPlat
+      }
+      
+    }
+    return this.http.put(base_url+'/modifPlat',body)
+  }
+  deletePlat(idResto,idPlat)
+  {
+    let body:any={
+      '_id':idResto,
+      'idPlat':idPlat
+    }
+    console.log(body)
+    return this.http.post(base_url+'/deletePlat',body)
+  }
 }

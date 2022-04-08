@@ -28,18 +28,44 @@ db.resto.update({_id:1},
 {'$push':{livreur:{idLivreur:2,nom:"Jeanne",prenom:"Bernardette",username:"Bernardette",mdp:"mdpBernardette"}}})
 -- (idResto,nomResto,mdpResponsable,adresse,logo,plat[](idPlat,nom,details,img,prix,benefice),livreur[](idLivreur,nom,prenom,username,mdp))
 db.resto.findOne({_id:1});
+db.resto.aggregate([
+  { $unwind: '$plat' },
+  { $match: { _id: 2 }},
+  { $group: { _id: 1, max: { $max: '$plat._id' } } },
+  { $project: { max: 1, _id:0 } }
+]) 
+db.resto.update(
+    {"_id":1},
+    {$pull:{"plat":{_id:4}}}
+)
+
 db.createCollection('typeuser');
-db.user.insertOne({
-    _id:1,username:'Jean',mail:'jean@gmail.com',mdp:'mdpJean',typeuser:'client'
-})
-db.user.insertOne({
-    _id:2,username:'Jean',mail:'jean@gmail.com',mdp:'mdpJean',typeuser:'ekaly'
-})
+db.typeuser.insertOne({_id:1,nomTypeUser:"client",users:[{ _id:1,username:'Jean',mail:'jean@gmail.com',mdp:'mdpJean'}]})
+db.typeuser.insertOne({_id:2,nomTypeUser:"ekaly",users:[{ _id:1,username:'ekaly',mail:'ekalylivraison@gmail.com',mdp:'ekaly123456'}]})
+db.typeuser.insertOne({_id:3,nomTypeUser:"livreur",users:[{ _id:1,username:'Bernard',mail:'bernard@gmail.com',mdp:'mdpBernard'}]})
+
+db.typeuser.update({_id:3},
+{'$push':{users:{_id:2,username:"Bernardette",mdp:"mdpBernardette"}}})
+
+-- db.user.insertOne({
+--     _id:1,username:'Jean',mail:'jean@gmail.com',mdp:'mdpJean',typeuser:'client'
+-- })
+-- db.user.insertOne({
+--     _id:2,username:'Jean',mail:'jean@gmail.com',mdp:'mdpJean',typeuser:'ekaly'
+-- })
 
 -- (iduser,username,mail,mdp,type)
 
 db.createCollection('commande');
 -- (idCommande,client(id,nom,prenom),dateHCommande,livreur,lieuLivraison,status,CommandeDetail[](idResto,nomPlat,prix,nbre))
 
-db.commande.find({"plats.idResto":'2'}).pretty();
+db.commande.find({"plats.idResto":2},{"plats":1,_id:0}).pretty();
+
 db.commande.findOneAndUpdate({ _id: ObjectId('624d8a98e7ad67ecf8768441') },{$set: {"status": "alivrer"}})
+
+--  db.collection('resto.plat').find({},{"plat._id":1}).sort({"plat._id":-1}).limit(1).toArray()
+
+
+-- db.resto.find({"plats.dispo":1},{"plats":1,_id:0}.pretty())
+
+-- db.createCollection('ekaly');

@@ -15,6 +15,8 @@ import { PanierComponent } from './examples/panier/panier.component';
 import { ValidationCommandeComponent } from './examples/validation-commande/validation-commande.component';
 import { TraitementCommandeComponent } from './resto/traitement-commande/traitement-commande.component';
 import { GestionplatComponent } from './resto/gestionplat/gestionplat.component';
+import { GestionlivreurComponent } from './ekaly/gestionlivreur/gestionlivreur.component';
+import { GestionrestoComponent } from './ekaly/gestionresto/gestionresto.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -29,7 +31,9 @@ const routes: Routes =[
     { path: 'examples/panier',     component: PanierComponent },
     { path: 'examples/validationCommande',     component: ValidationCommandeComponent },
     { path: 'resto/commande',     component: TraitementCommandeComponent },
-    { path: 'resto/plats',     component: GestionplatComponent }
+    { path: 'resto/plats',     component: GestionplatComponent },
+    { path: 'ekaly/livreurs',     component: GestionlivreurComponent },
+    { path: 'ekaly/resto',     component: GestionrestoComponent }
     
 ];
 

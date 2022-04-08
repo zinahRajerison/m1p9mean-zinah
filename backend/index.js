@@ -7,6 +7,9 @@ var helper=require("./Helper.js")
 var func=require("./Function.js")
 var reponse=require("./Response.js")
 var client=require('./Client.js')
+var plat=require('./Plat.js')
+var mailFunc=require('./functionMail.js')
+var livreur=require('./Livreur.js')
 
 app.set("view engine",'jade');
 app.use(bodyParser.json());
@@ -39,9 +42,17 @@ app.post('/login',function(req,res){
 app.post('/sendMail',function(req,res){
     var connex=new func();
     console.log(req.body)
-    connex.sendMail(req.body.mail)
-    res.send(new reponse(200,"Mail sent successfully",null))
+    connex.sendMail(req.body.mail).then(function(result){
+        res.send(new reponse(200,"Mail sent successfully",null))
+    }).catch(function(error){
+        res.send(400,error,null)
+    })
+    
 });
+app.post('/mail',function(req,res){
+    mailFunc.sendMail(req.body.mail,req.body.mailContent)
+    res.send(new reponse(200,"Mail sent successfully",null))
+})
 app.get('/findResto',function(req,res){
     var fonc=new func();
     console.log(req.body)
@@ -95,6 +106,71 @@ app.put('/updateCommande',function(req,res){
         res.send(toRespond)
     })
 });
+app.post('/ajoutPlat',function(req,res){
+    var plats=new plat();
+    console.log(req.body)
+    plats.ajoutPlat(req.body)
+    res.send(new reponse(200,"Plat ajoute",null))
+});
+app.post('/deletePlat',function(req,res){
+    var plats=new plat();
+    console.log("body"+req.body._id)
+    plats.deletePlat(req.body._id,req.body.idPlat).then(function(result)
+    {
+        res.send(new reponse(200,"Plat efface",null))
+    }).catch(function(error){
+        res.send(new reponse(400,"error",null))
+    })
+   
+})
+app.put('/modifPlat',function(req,res)
+{
+    var plats=new plat();
+    console.log(req.body)
+    plats.updatePlat(req.body).then(function(results){
+    var toRespond = new reponse(200,"Plat updated successfully",results);
+    res.send(toRespond);
+    }).catch( function(error){
+        var toRespond =new reponse(400,error,null);
+        res.send(toRespond)
+    })
+})
+
+app.get('/getLivreurs',function(req,res){
+    var liv=new livreur();
+    liv.finduser(3).then(function(results){
+    var toRespond =new reponse(200,"Data gotten successfully",results[0].users);
+    res.send(toRespond);
+    }).catch( function(error){
+        var toRespond =new reponse(400,error,null);
+        res.send(toRespond)
+    })
+});
+app.put('/modifLivreur',function(req,res)
+{
+    new livreur().updateLivreur(req.body).then(function(results){
+    var toRespond = new reponse(200,"Livreur updated successfully",results);
+    res.send(toRespond);
+    }).catch( function(error){
+        var toRespond =new reponse(400,error,null);
+        res.send(toRespond)
+    })
+})
+
+app.post('/ajoutLivreur',function(req,res){
+    new livreur().ajoutLivreur(req.body)
+    res.send(new reponse(200,"Plat ajoute",null))
+});
+
+app.post('/deleteLivreur',function(req,res){
+    new livreur().deleteLivreur(req.body._id).then(function(result)
+    {
+        res.send(new reponse(200,"Plat efface",null))
+    }).catch(function(error){
+        res.send(new reponse(400,"error",null))
+    })
+   
+})
 app.listen(3000,function(){
     console.log('Example app listening on port 3000')
 });

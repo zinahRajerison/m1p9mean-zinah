@@ -1,0 +1,75 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <nav class="nav flex-column">
+                <a class="nav-link active" href="#">Gestion commandes</a>
+                <a class="nav-link" href="#">Gestion livreurs</a>
+                <a class="nav-link" href="#">Benefice</a>
+            </nav>
+        </div>
+        
+        <div class="col-6">
+            <form>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Username</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Username" [(ngModel)]="livreur.username" name="livreur.username">
+            </div> 
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Mail</label>
+                <input type="mail" class="form-control" id="exampleFormControlInput1" placeholder="Mail" [(ngModel)]="livreur.mail" name="livreur.mail">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Mot de passe</label>
+                <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Mot de passe" [(ngModel)]="livreur.mdp" name="livreur.benefice">
+            </div>
+            <div *ngIf="modif; then modifbtn else insertbtn"></div> 
+            <ng-template #modifbtn>
+                <button type="submit" class="btn"(click)="modiflivreur()">Modifier</button>
+            </ng-template>
+            <ng-template #insertbtn>
+                <button type="submit" class="btn"(click)="ajouterlivreur()">Ajouter</button>
+            </ng-template>
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-shopping" ng-init="total=0">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th></th>
+                        <th>Username</th>
+                        <th >Mail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let livreur of livreurs; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>
+                            <div class="img-container">
+                                <img src="" alt="..." width="20px">
+                            </div>
+                        </td>
+                        <td class="td-name">
+                            <a href="#jacket">{{livreur.username}}</a>
+                        </td>
+                        <td class="td-name">
+                            {{livreur.mdp}} 
+                        </td>
+                        <td class="td-actions">
+                            <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-neutral btn-just-icon" (click)="deleteLivreur(livreur._id,i)">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                            </button>
+                            <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-neutral btn-just-icon" (click)="editLivreur(i)">
+                               <i class="now-ui-icons files_paper"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

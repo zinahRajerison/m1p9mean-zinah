@@ -63,9 +63,9 @@ class Function{
     }
     sendMail = function(mail){
         return new Promise(function(resolve,reject){
-            var transporter=nodemailer.createTransport({host:'smtp.gmail.com',port:465,secure:true,auth:{user:'zinahrajerison2000@gmail.com',pass:'for8EVER'}});
+            var transporter=nodemailer.createTransport({host:'smtp.gmail.com',port:465,secure:true,auth:{user:'ekalylivraison@gmail.com',pass:'ekaly123456'}});
             var mailOptions={
-                from:'zinahrajerison2000@gmail.com',
+                from:'ekalylivraison@gmail.com',
                 to:mail,
                 subject:'e-kaly Validation Commande',
                 text:'Cliquez ce liem pour valider votre derniere commande sur e-kaly'
@@ -74,6 +74,7 @@ class Function{
                 if(error){
                     reject(error)
                 }else{
+                    console.log(info.response)
                     resolve('E-mail sent:'+info.response)
                 }
             })

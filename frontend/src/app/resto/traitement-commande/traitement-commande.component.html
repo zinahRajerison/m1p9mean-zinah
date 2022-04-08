@@ -3,33 +3,42 @@
 <div class="wrapper">
     <div class="section">
         <div class="container">
+          <div class="row">
+            <div class="col-3">
+                <nav class="nav flex-column">
+                    <a class="nav-link active" href="#">Gestion commande</a>
+                    <a class="nav-link" href="#">Gestion plats</a>
+                    <a class="nav-link" href="#">Benefices</a>
+                </nav>
+            </div>
+            
             <div cdkDropListGroup>
-              <div class="example-container">
-                <h2>Commande en cours</h2>
-            
-                <div
-                  cdkDropList
-                  [cdkDropListData]="commandesEncours"
-                  class="example-list"
-                  cdkDropListSortingDisabled
-                  (cdkDropListDropped)="drop($event)">
-                  <div class="example-box" *ngFor="let item of commandesEncours" cdkDrag>{{item.lieuLivraison}}</div>
+                <div class="example-container">
+                  <h2>Commande en cours</h2>
+              
+                  <div
+                    cdkDropList
+                    [cdkDropListData]="commandesEncours"
+                    class="example-list"
+                    cdkDropListSortingDisabled
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let item of commandesEncours" cdkDrag>{{item.lieuLivraison}}</div>
+                  </div>
                 </div>
-              </div>
-            
-              <div class="example-container">
-                <h2>Commande a livrer</h2>
-            
-                <div
-                  cdkDropList
-                  [cdkDropListData]="commandesAlivrer"
-                  class="example-list"
-                  (cdkDropListDropped)="drop($event)">
-                  <div class="example-box" *ngFor="let item of commandesAlivrer" cdkDrag>{{item.lieuLivraison}}</div>
+              
+                <div class="example-container">
+                  <h2>Commande a livrer</h2>
+              
+                  <div
+                    cdkDropList
+                    [cdkDropListData]="commandesAlivrer"
+                    class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let item of commandesAlivrer" cdkDrag>{{item.lieuLivraison}}</div>
+                  </div>
                 </div>
-              </div>
-            </div>  
-            
+              </div>  
+          </div>
         </div>
     </div>
 </div>

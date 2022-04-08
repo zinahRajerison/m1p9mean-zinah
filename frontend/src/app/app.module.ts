@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
 import { RestoModule } from './resto/resto.module';
+import { EkalyModule } from './ekaly/ekaly.module';
 import {HttpClient,HttpClientModule} from '@angular/common/http';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 
@@ -28,7 +29,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
         ExamplesModule,
         HttpClientModule,
         RestoModule,
-        DragDropModule
+        DragDropModule,
+        EkalyModule
     ],
     providers: [],
     bootstrap: [AppComponent]
