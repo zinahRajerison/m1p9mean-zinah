@@ -2,7 +2,7 @@
   "name": "m1p9mean-zinah",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "backend/index.js",
   "scripts": {
     "ng":"ng",
     "postinstall": "npm run build",
@@ -13,7 +13,7 @@
     "test": "ng test",
     "lint":"ng lint",
     "e2e":"ng e2e",
-    "install:clean":"rm -rf node_modules/ && rm package-lock.json && npm start",
+    "install:clean":"rm -rf node_modules/ && rm package-lock.json && npm start"
   },
   "repository": {
     "type": "git",
