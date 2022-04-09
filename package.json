@@ -12,7 +12,7 @@
     "start": "node backend/index.js",
     "node:dev":"nodemon -r dotenv/config . dotenv_config_path=./.env.local",
     "heroku-postbuild":"ng build --configuration production",
-    "build":"ng build",
+    "build":"ng build /frontend",
     "test": "ng test",
     "lint":"ng lint",
     "e2e":"ng e2e",
