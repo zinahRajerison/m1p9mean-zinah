@@ -1,7 +1,7 @@
 const bcrypt=require("bcryptjs")
 const MongoClient = require('mongodb').MongoClient
-// var connectString="mongodb+srv://<m1p9mean-zinah>:<123456>@<clustername>-rmp3c.mongodb.net/test?retryWrites=true&w=majority"
-const url = 'mongodb://127.0.0.1:27017'
+var url="mongodb+srv://ekalyUser:2EAUIIgK6RUvnkHC@cluster0.ut6sd.mongodb.net/ekaly?retryWrites=true&w=majority"
+// const url = 'mongodb://127.0.0.1:27017'
 const dbName = 'ekaly'
 const md5=require('md5')
 var Livreur=require('./Livreur.js')
@@ -9,7 +9,7 @@ class Helper{
     seConnecter=function(){
         return new Promise(function(resolve,reject)
         {
-            MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
+            MongoClient.connect(url,(err, client) => {
                 if(err) console.log(err)
                 else{
                     var db = client.db(dbName)

@@ -1,8 +1,8 @@
 use ekaly
 
 db.createUser({
-    user : "m1p9mean-zinah",
-    pwd : "123456",
+    user : "ekalyUser",
+    pwd : "ekaly123456",
     roles : ["readWrite", "dbAdmin"]
 });
 
@@ -10,12 +10,12 @@ db.createUser({
 db.createCollection('resto'); 
 ---nomResto,adresse,details,plat[],responsable[]
 db.resto.insertOne(
-    { _id: 1, nomResto: "Korean food", adresse:"Andohatapenaka",details:"Specialite coreenne Boissons Kebab Sushis Ramen ",logo:"korean.jpg",
-        plat:[{_id:1,nom:"ramen",details:"ramen epice ",img:"ramensimple.jpg",prix:30000,benefice:2000},{_id:2,nom:"ramen garnie",details:"ramen epice avec garniture ",img:"ramengarnie.jpg",prix:35000,benefice:2000}],
-        responsable:[{_id:1,username:"Bernard",mail:"bernard@gmail.com",mdp:"mdpBernard"}]
+    { "_id": 1, "nomResto": "Korean food", "adresse":"Andohatapenaka","details":"Specialite coreenne Boissons Kebab Sushis Ramen ","logo":"korean.jpg",
+        "plat":[{"_id":1,"nom":"ramen","details":"ramen epice ","img":"ramensimple.jpg","prix":30000,"benefice":2000},{"_id":2,nom":"ramen garnie","details":"ramen epice avec garniture ","img":"ramengarnie.jpg","prix":35000,"benefice":2000}],
+        "responsable":[{"_id":1,"username":"Bernard","mail":"bernard@gmail.com","mdp":"mdpBernard"}]
     })
 db.resto.insertOne(
-    { _id: 2, nomResto: "Chinese food", adresse:"Analakely",details:"Specialite chinoise Boissons Soupe Sushis Original ",logo:"chinese.jpg",
+    { "_id": 2, nomResto: "Chinese food", adresse:"Analakely",details:"Specialite chinoise Boissons Soupe Sushis Original ",logo:"chinese.jpg",
         plat:[{_id:1,nom:"soupe simple",details:"soupe epice ",img:"soupesimple.jpg",prix:30000,benefice:3000},{_id:2,nom:"soupe garnie",details:"soupe epice avec garniture ",img:"soupegarnie.jpg",prix:40000,benefice:2400}],
         responsable:[{_id:1,username:"Bernardin",mail:"bernardin@gmail.com",mdp:"mdpBernardin"}]
     })
@@ -83,3 +83,6 @@ db.typeuser.find({
 db.typeuser.aggregate([
 {$sort:{_id:1}}
 ]) 
+
+
+mongodb+srv://ekalyUser:<password>@cluster0.ut6sd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
