@@ -1,0 +1,19 @@
+{
+  "name": "m1p9mean-zinah",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zinahRajerison/m1p9mean-zinah.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zinahRajerison/m1p9mean-zinah/issues"
+  },
+  "homepage": "https://github.com/zinahRajerison/m1p9mean-zinah#readme"
+}
