@@ -38,20 +38,36 @@ class Function{
         return new Promise(function(resolve,reject){
             new helper().seConnecter().then(function(db){
                 var query = {"plats.idResto":idResto,status:"encours"}
+                console.log(query)
                 var sort = {dateCommande:1}
-                db.collection("commande").find(query) .sort(sort).toArray()
+                db.collection("commande").find(query).sort(sort).toArray()
                 .then(results => {
                     var ret={
                         encours:results
                     }
                     var query = {"plats.idResto":idResto,status:"alivrer"};
                     var sort = {dateCommande:1}
-                    db.collection("commande").find(query,sort) .toArray()
+                    db.collection("commande").find(query).sort(sort) .toArray()
                     .then(results => {
                         ret.alivrer=results
                         resolve(ret);
                     })
                     .catch(error => console.error(error))
+                })
+                .catch(error => console.error(error))
+            }).catch(
+                error => console.log(error)
+            )
+        })
+    }
+    findAllCommande =function(){
+        return new Promise(function(resolve,reject){
+            new helper().seConnecter().then(function(db){
+                var query = {status:"alivrer"};
+                var sort = {dateCommande:1}
+                db.collection("commande").find(query).sort(sort) .toArray()
+                .then(results => {
+                    resolve(results);
                 })
                 .catch(error => console.error(error))
             }).catch(

@@ -14,6 +14,10 @@ export class EkalyService {
     // const options = this.toolServ.formOption();
     return this.http.get(base_url+'/getLivreurs');
   }
+  getCommandes () {
+    // const options = this.toolServ.formOption();
+    return this.http.get(base_url+'/findAllCommande');
+  }
   ajoutLivreur(username,mail,mdp)
   {
     let body: any ={

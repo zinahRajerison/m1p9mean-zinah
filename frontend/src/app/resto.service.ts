@@ -10,13 +10,9 @@ export class RestoService {
 
   constructor(public http : HttpClient, public toolServ:HelperService) { }
   
-  getCommandes () {
+  findCommandes (idResto) {
     // const options = this.toolServ.formOption();
-    
-    let body : any = {
-      'idResto' : 1
-    };
-    return this.http.get(base_url+'/findCommande/1');
+    return this.http.get(base_url+'/findCommande/'+idResto);
   }
   updateCommande(toUpdate)
   {

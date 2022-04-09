@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-3">
             <nav class="nav flex-column">
-                <a class="nav-link " href="/ekaly/livreurs">Gestion commandes</a>
+                <a class="nav-link " href="/ekaly/livreurs">Gestion livreurs</a>
                 <a class="nav-link active" href="/ekaly/restos">Gestion restos</a>
                 <a class="nav-link" href="/ekaly/benefice">Benefice</a>
             </nav>
@@ -77,10 +77,10 @@
                             {{resto.details}} 
                         </td>
                         <td class="td-actions">
-                            <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-neutral btn-just-icon" (click)="deleteResto(resto._id,i)">
+                            <button type="button" rel="tooltip" data-placement="left" title="Effacer livreur" class="btn btn-neutral btn-just-icon" (click)="deleteResto(resto._id,i)">
                                 <i class="now-ui-icons ui-1_simple-remove"></i>
                             </button>
-                            <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-neutral btn-just-icon" (click)="editResto(i)">
+                            <button type="button" rel="tooltip" data-placement="left" title="Modifier livreur" class="btn btn-neutral btn-just-icon" (click)="editResto(i)">
                                <i class="now-ui-icons files_paper"></i>
                             </button>
                         </td>
@@ -90,3 +90,30 @@
         </div>
     </div>
 </div>
+
+<footer class="footer">
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-google-plus"></i></a>
+                    <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
+                    <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li>
+                    <a href="https://www.creative-tim.com/about-us">
+                        About Us
+                    </a>
+                </li>
+                <li>
+                    <a href="http://blog.creative-tim.com">
+                        Blog
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            &copy;
+          {{data | date: 'yyyy'}}, Rajerison Lalao Zinah
+        </div>
+    </div>
+</footer>

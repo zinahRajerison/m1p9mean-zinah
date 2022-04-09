@@ -26,7 +26,7 @@
                         <div class="card" style="width: 20rem;">
                           {{item.lieuLivraison}}
                             <ul class="list-group list-group-flush" >
-                              <li class="list-group-item"*ngFor="let plat of item.plats">{{plat.nom}}</li>
+                              <li class="list-group-item"*ngFor="let plat of item.plats">{{plat.nom}} X{{plat.nbre}}</li>
                             </ul>
                           </div>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="card" style="width: 20rem;">
                           {{item.lieuLivraison}}
                             <ul class="list-group list-group-flush" >
-                              <li class="list-group-item"*ngFor="let plat of item.plats">{{plat.nom}}</li>
+                              <li class="list-group-item"*ngFor="let plat of item.plats">{{plat.nom}} X {{plat.nbre}}</li>
                             </ul>
                           </div>
                     </div>
@@ -56,4 +56,31 @@
         </div>
     </div>
 </div>
+
+<footer class="footer">
+  <div class="container">
+      <nav>
+          <ul>
+              <li><a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-google-plus"></i></a>
+                  <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
+                  <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
+              </li>
+              <li>
+                  <a href="https://www.creative-tim.com/about-us">
+                      About Us
+                  </a>
+              </li>
+              <li>
+                  <a href="http://blog.creative-tim.com">
+                      Blog
+                  </a>
+              </li>
+          </ul>
+      </nav>
+      <div class="copyright">
+          &copy;
+        {{data | date: 'yyyy'}}, Rajerison Lalao Zinah
+      </div>
+  </div>
+</footer>
 

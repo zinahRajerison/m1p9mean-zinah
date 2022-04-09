@@ -18,7 +18,7 @@ public gfg = false;
     this.paniers=this.ClientServ.getPanier();
   }
   validerCommande(){
-    var user=sessionStorage.getItem("user");
+    var user=sessionStorage.getItem("personne");
     if(user==null)
     {
         alert("Veuillez d'abord vous connectez pour valider la commande");

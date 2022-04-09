@@ -62,19 +62,20 @@ export class ClientService {
     }
     return total+3000;
   }
-  connect (mail : string, mdp : string) {
+  connect (mail : string, mdp : string,typeuser:number) {
     const options = this.toolServ.formOption();
     
     let body : any = {
       'mail' : mail,
-      'mdp' : mdp
+      'mdp' : mdp,
+      "typeuser":typeuser
     };
     return this.http.post(base_url + '/login', body, options);
   }
   insertCommande(paniers,lieuLivraison)
   {
     let body:any ={
-      'client':sessionStorage.getItem("user"),
+      'client':sessionStorage.getItem("personne"),
       'lieuLivraison':lieuLivraison,
       'plats':paniers,
       'status':'encours',

@@ -33,11 +33,20 @@ app.post('/register',function(req,res){
 app.post('/login',function(req,res){
     // var customer=new client(req.body.mail,req.body.mdp)
     // console.log(customer.mail)
-    new func().seLogger(req.body.mail,req.body.mdp,1).then(function(user){
-        res.send(new reponse(200,"Connected",user))
-    }).catch(function(error){
-        res.send(new reponse(300,error,null))
-    })
+    if(parseInt(req.body.typeuser)==0){
+        new Resto().seLogger(req.body.mail,req.body.mdp).then(function(user){
+            res.send(new reponse(200,"Connected",user))
+        }).catch(function(error){
+            res.send(new reponse(400,error,null))
+        })
+    }
+    else{
+        new func().seLogger(req.body.mail,req.body.mdp,parseInt(req.body.typeuser)).then(function(user){
+            res.send(new reponse(200,"Connected",user))
+        }).catch(function(error){
+            res.send(new reponse(400,error,null))
+        })
+    }
 });
 
 app.post('/sendMail',function(req,res){
@@ -192,8 +201,17 @@ app.post('/deleteResto',function(req,res){
     }).catch(function(error){
         res.send(new reponse(400,"error",null))
     })
-   
 })
+app.get('/findAllCommande',function(req,res){
+    var fonc=new func();
+    fonc.findAllCommande().then(function(results){
+    var toRespond = new reponse(200,"Data gotten successfully",results);
+    res.send(toRespond);
+    }).catch( function(error){
+        var toRespond =new reponse(400,error,null);
+        res.send(toRespond)
+    })
+});
 app.listen(3000,function(){
     console.log('Example app listening on port 3000')
 });

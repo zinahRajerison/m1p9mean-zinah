@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
 
     constructor(public location: Location, private element : ElementRef) {
         this.sidebarVisible = false;
-        if(sessionStorage.getItem('user')==null)
+        if(sessionStorage.getItem('personne')==null)
         {
             this.login = true;
         }

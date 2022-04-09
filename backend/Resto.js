@@ -78,5 +78,21 @@ class Resto{
             )
         })
     }
+    seLogger =function(mail,mdp){
+        return new Promise(function(resolve,reject){
+            new helper().seConnecter().then(function(db){
+                // var nvmdp=md5(mdp)
+                var query = {"responsable.mail":mail,"responsable.mdp":mdp}
+                console.log(query)
+                db.collection('resto').findOne(query)
+                .then(result => {
+                    resolve(result)
+                })
+                .catch(error => console.error(error))
+            }).catch(
+                error => console.log("Connexion base de donnee echouee")
+            )
+        })
+    }
 }
 module.exports=Resto

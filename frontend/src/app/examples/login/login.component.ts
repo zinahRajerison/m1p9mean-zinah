@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
     focus1;
     mail:string
     mdp:string
+    typeuser:number
     error_msg:string
     constructor(public ClientServ:ClientService,public toolServ:HelperService,public router:Router) { }
 
@@ -33,13 +34,26 @@ export class LoginComponent implements OnInit {
         navbar.classList.remove('navbar-transparent');
     }
     selogger(){
-        console.log("login")
     const success = response => {
         if (response['status'] == 200) {
-          const user = response['data'];
-          sessionStorage.setItem("user",JSON.stringify(user));
-          this.toolServ.setUser(user);
-          this.router.navigate(['/examples/restos']);
+            const user = response['data'];
+            console.log("typeUser"+this.typeuser)
+            switch(this.typeuser){
+            case 0:
+                sessionStorage.setItem("idResto",JSON.stringify(user._id));
+                this.router.navigate(['/resto/commande']);
+                break;
+            case 1:
+                console.log("one")
+                sessionStorage.setItem("personne",JSON.stringify(user));
+                this.toolServ.setUser(user);
+                this.router.navigate(['/examples/restos']);
+                break;
+            case 2:
+                sessionStorage.setItem("personne",JSON.stringify(user));
+                this.toolServ.setUser(user);
+                this.router.navigate(['/ekaly/livreurs']);
+            }
         } else {
           this.error_msg = 'Erreur connexion';
         }
@@ -50,7 +64,7 @@ export class LoginComponent implements OnInit {
         this.error_msg = 'Erreur connexion';
       };
   
-      this.ClientServ.connect(this.mail, this.mdp)
+      this.ClientServ.connect(this.mail, this.mdp,this.typeuser)
           .subscribe(success, error);
     }
 

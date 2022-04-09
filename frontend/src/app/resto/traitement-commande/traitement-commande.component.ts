@@ -12,11 +12,12 @@ export class TraitementCommandeComponent implements OnInit {
 commandesEncours:any[]
 commandesAlivrer:any[]
 error_msg:string
+idResto:number
 public isCollapsed = false;
   constructor(public restoServ:RestoService) { }
 
   ngOnInit(): void {
-    
+    this.idResto=parseInt(sessionStorage.getItem("idResto"))
     const success = response => {
       if (response['status'] == 200) {
         this.commandesEncours = response["data"].encours;
@@ -36,7 +37,7 @@ public isCollapsed = false;
     const error = response => {
       this.error_msg = 'Erreur connexion';
     };
-    this.restoServ.getCommandes().subscribe(success, error);
+    this.restoServ.findCommandes(this.idResto).subscribe(success, error);
   }
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
