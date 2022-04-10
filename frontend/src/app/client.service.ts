@@ -79,7 +79,8 @@ export class ClientService {
       'lieuLivraison':lieuLivraison,
       'plats':paniers,
       'status':'encours',
-      'dateCommande': Date.now()
+      'dateCommande': Date.now(),
+      'livreur':0
     };
     console.log(body);
     return this.http.post(base_url + '/insertCommande', body);
