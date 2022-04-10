@@ -9,6 +9,7 @@ class Helper{
     seConnecter=function(){
         return new Promise(function(resolve,reject)
         {
+            console.log("here")
             MongoClient.connect(url,(err, client) => {
                 if(err) console.log(err)
                 else{
@@ -24,7 +25,7 @@ class Helper{
     sinscrire = function(ainserer,table){
         this.seConnecter().then(function(db){
             const test = db.collection(table)
-            new Livreur().findMaxIndex(db,1).then(function(max)
+            this.findMaxIndex(db,1).then(function(max)
             {
                 var query= {
                     _id : 1
@@ -55,6 +56,24 @@ class Helper{
         }).catch(
             error => console.log("Connexion base de donnee echouee")
         )
+    }
+    findMaxIndex = function(db,idUser)
+    {
+        return new Promise(function(resolve,reject){
+            console.log("huh")
+            db.collection('typeuser').aggregate([
+                { $unwind: '$users' },
+                { $match: { _id:  idUser}},
+                { $group: { _id: 1, max: { $max: '$users._id' } } },
+                { $project: { max: 1, _id:0 } }
+              ]).toArray()
+            .then(function(result){
+                console.log(result)
+                resolve(result[0].max)
+            }).catch(function(error){
+                reject(error)
+            })
+        })
     }
 }
 module.exports=Helper;
