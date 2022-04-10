@@ -10,11 +10,11 @@ export class EkalyService {
 
   constructor(public http : HttpClient, public toolServ:HelperService) { }
   
-  getLivreurs () {
+  getLivreurs() {
     // const options = this.toolServ.formOption();
     return this.http.get(base_url+'/getLivreurs');
   }
-  getCommandes () {
+  getCommandes() {
     // const options = this.toolServ.formOption();
     return this.http.get(base_url+'/findAllCommande');
   }

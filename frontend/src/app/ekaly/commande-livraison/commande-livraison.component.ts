@@ -14,7 +14,7 @@ closeResult:string
 livreurs:any[]
 idLivreur:any
 idCommande:any
-  constructor(public ekalyServ:EkalyService,private modalService:NgbModal ) { }
+constructor(public ekalyServ:EkalyService,private modalService:NgbModal ) { }
 
   ngOnInit(): void {
     
