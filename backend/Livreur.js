@@ -2,25 +2,22 @@ var helper=require("./Helper.js")
 var md5=require('md5')
 
 class Livreur{
-    finduser =function(idUser){
+    findLivreurs =function(idUser){
         return new Promise(function(resolve,reject){
-            new helper().seConnecter().then(function(db){
-                var query = {_id:idUser}
-                console.log(query)
-                db.collection("typeuser").find(query).toArray()
-                .then(results => {
-                    resolve(results);
-                })
-                .catch(error => console.error(error))
-            }).catch(
-                error => console.log("Connexion base de donnee echouee")
-            )
+            new helper().findMaxIndex(db,3).then(function(max)
+            {
+                console.log("max"+max)
+                resolve(max)
+            }).catch(function(err){
+                console,log(err);
+            })
         })
     }
     updateLivreur=function(toUpdate)
     {
         return new Promise(function(resolve,reject){
             new helper().seConnecter().then(function(db){
+                console.log("db found")
                 var user=toUpdate.toUpdate
                 console.log(user)
                 var query = {_id: 3,"users._id":toUpdate._id}
@@ -42,11 +39,11 @@ class Livreur{
             )
         })
     }
-    
     ajoutLivreur = function(ainserer){
-        new helper().seConnecter().then(function(db){
+        var help=new helper()
+        help.seConnecter().then(function(db){
             const test = db.collection("typeuser");
-            new Livreur().findMaxIndex(db,3).then(function(max)
+            help.findMaxIndex(db,3).then(function(max)
             {
                 var query= {
                     _id : 3
@@ -65,24 +62,6 @@ class Livreur{
         }).catch(
             error => console.log(error)
         )
-    }
-    findMaxIndex = function(db,idUser)
-    {
-        return new Promise(function(resolve,reject){
-            console.log("huh")
-            db.collection('typeuser').aggregate([
-                { $unwind: '$users' },
-                { $match: { _id:  idUser}},
-                { $group: { _id: 1, max: { $max: '$users._id' } } },
-                { $project: { max: 1, _id:0 } }
-              ]).toArray()
-            .then(function(result){
-                console.log(result)
-                resolve(result[0].max)
-            }).catch(function(error){
-                reject(error)
-            })
-        })
     }
     deleteLivreur=function(idLivreur)
     {
