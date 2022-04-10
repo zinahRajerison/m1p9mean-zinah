@@ -116,7 +116,7 @@ class Function{
         })
     }
     
-    updateCommande =function(idCommande){
+    updateCommande =function(idCommande,status){
         return new Promise(function(resolve,reject){
             new helper().seConnecter().then(function(db){
                 var query = {_id: new ObjectId(idCommande)}
@@ -124,7 +124,7 @@ class Function{
                 db.collection("commande").findOneAndUpdate(query,
                 {
                     $set: {
-                        "status": "alivrer"
+                        "status": status
                     }
                 })
                 .then(result => {
@@ -133,6 +133,146 @@ class Function{
                 .catch(error => console.error(error))
             }).catch(
                 error => console.log("Connexion base de donnee echouee")
+            )
+        })
+    }
+    findLivreurs =function(idUser){
+        return new Promise(function(resolve,reject){
+            new helper().seConnecter().then(function(db){
+                var query = {_id: idUser};
+                db.collection("typeuser").find(query).toArray()
+                .then(results => {
+                    resolve(results);
+                })
+                .catch(error => console.error(error))
+            }).catch(
+                error => console.log(error)
+            )
+        })
+    }
+    
+    updateLivreur=function(toUpdate)
+    {
+        return new Promise(function(resolve,reject){
+            new helper().seConnecter().then(function(db){
+                var user=toUpdate.toUpdate
+                console.log(user)
+                var query = {_id: 3,"users._id":toUpdate._id}
+                console.log(query)
+                var set={
+                    $set: {
+                        "users.$.username":user.username,"users.$.mail":user.mail,"users.$.mdp":user.mdp
+                    }
+                }
+                console.log(set)
+                db.collection("typeuser").findOneAndUpdate(query, set
+                )
+                .then(result => {
+                    resolve(result)
+                })
+                .catch(error => console.error(error))
+            }).catch(
+                error => console.log("Connexion base de donnee echouee")
+            )
+        })
+    }
+    
+    ajoutLivreur = function(ainserer){
+        new helper().seConnecter().then(function(db){
+            const test = db.collection("typeuser");
+            new Livreur().findMaxIndex(db,3).then(function(max)
+            {
+                var query= {
+                    _id : 3
+                }
+                console.log(query)
+                ainserer.toUpdate._id=max+1
+                ainserer.toUpdate.mdp=md5(ainserer.toUpdate.mdp)
+                test.update(query,{'$push':{users:ainserer.toUpdate}})
+                .then(result => {
+                    console.log(result)
+                })
+                .catch(error => console.error(error))
+            }).catch(function(error){
+                    console.log(error)
+            })
+        }).catch(
+            error => console.log(error)
+        )
+    }
+    findMaxIndex = function(db,idUser)
+    {
+        return new Promise(function(resolve,reject){
+            console.log("huh")
+            db.collection('typeuser').aggregate([
+                { $unwind: '$users' },
+                { $match: { _id:  idUser}},
+                { $group: { _id: 1, max: { $max: '$users._id' } } },
+                { $project: { max: 1, _id:0 } }
+              ]).toArray()
+            .then(function(result){
+                console.log(result)
+                resolve(result[0].max)
+            }).catch(function(error){
+                reject(error)
+            })
+        })
+    }
+    deleteLivreur=function(idLivreur)
+    {
+        return new Promise(function(resolve,reject){
+            new helper().seConnecter().then(function(db){
+                var query = {_id: 3}
+                console.log(query)
+                db.collection("typeuser").update(query,
+                {
+                    $pull: {"users": {_id:idLivreur} }
+                })
+                .then(result => {
+                    resolve(result)
+                })
+                .catch(error => console.error(error))
+            }).catch(
+                error => console.log("Connexion base de donnee echouee")
+            )
+        })
+    }
+    assignerCommande =function(toUpdate){
+        return new Promise(function(resolve,reject){
+            var modif=toUpdate
+            console.log("modif"+modif)
+            new helper().seConnecter().then(function(db){
+                var query = {_id: new ObjectId(toUpdate._id)}
+                console.log(query)
+                db.collection("commande").update(query,
+                {
+                    $set: {
+                        "status": toUpdate.toUpdate.status,
+                        "livreur": toUpdate.toUpdate.livreur
+                    }
+                })
+                .then(result => {
+                    resolve(result)
+                })
+                .catch(error => console.error(error))
+            }).catch(
+                error => console.log(error)
+            )
+        })
+    }
+    findCommandeLivreur =function(idLivreur){
+        return new Promise(function(resolve,reject){
+            new helper().seConnecter().then(function(db){
+                var query = {status:"enlivraison","livreur":idLivreur};
+                console.log(query)
+                var sort = {dateCommande:1}
+                db.collection("commande").find(query).sort(sort) .toArray()
+                .then(results => {
+                    resolve(results);
+                })
+                .catch(error => console.error(error))
+            }).catch(
+                error => console.log(error)
             )
         })
     }

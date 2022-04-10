@@ -38,22 +38,27 @@ export class LoginComponent implements OnInit {
         if (response['status'] == 200) {
             const user = response['data'];
             console.log("typeUser"+this.typeuser)
-            switch(this.typeuser){
-            case 0:
-                sessionStorage.setItem("idResto",JSON.stringify(user._id));
-                this.router.navigate(['/resto/commande']);
-                break;
-            case 1:
-                console.log("one")
-                sessionStorage.setItem("personne",JSON.stringify(user));
-                this.toolServ.setUser(user);
-                this.router.navigate(['/examples/restos']);
-                break;
-            case 2:
-                sessionStorage.setItem("personne",JSON.stringify(user));
-                this.toolServ.setUser(user);
-                this.router.navigate(['/ekaly/livreurs']);
+            if(this.typeuser==0)
+            {
+                 sessionStorage.setItem("idResto",JSON.stringify(user._id));
+                 this.router.navigate(['/resto/commande']);
             }
+            if(this.typeuser==1){
+                 console.log("one")
+                 sessionStorage.setItem("personne",JSON.stringify(user));
+                 this.toolServ.setUser(user);
+                 this.router.navigate(['/examples/restos']);
+            }
+             if(this.typeuser==2){
+                 sessionStorage.setItem("personne",JSON.stringify(user));
+                 this.toolServ.setUser(user);
+                 this.router.navigate(['/ekaly/livreurs']);
+             }  
+            if(this.typeuser==3){
+                sessionStorage.setItem("personne",JSON.stringify(user._id));
+                this.toolServ.setUser(user);
+                this.router.navigate(['/livreur/commande']);
+            }              
         } else {
           this.error_msg = 'Erreur connexion';
         }

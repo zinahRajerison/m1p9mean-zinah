@@ -108,7 +108,8 @@ app.get('/findCommande/:id',function(req,res){
 
 app.put('/updateCommande',function(req,res){
     var fonc=new func();
-    fonc.updateCommande(req.body._id).then(function(results){
+    console.log("idCommande"+req.body._id)
+    fonc.updateCommande(req.body._id,req.body.status).then(function(results){
     var toRespond = new reponse(200,"Commande updated successfully",results);
     res.send(toRespond);
     }).catch( function(error){
@@ -147,10 +148,10 @@ app.put('/modifPlat',function(req,res)
 })
 
 app.get('/getLivreurs',function(req,res){
-    var liv=new livreur();
-    liv.finduser(3).then(function(results){
-    var toRespond =new reponse(200,"Data gotten successfully",results[0].users);
-    res.send(toRespond);
+    var fonc=new func();
+    fonc.findLivreurs(3).then(function(results){
+        var toRespond =new reponse(200,"Data gotten successfully",results);
+        res.send(toRespond);
     }).catch( function(error){
         var toRespond =new reponse(400,error,null);
         res.send(toRespond)
@@ -158,7 +159,7 @@ app.get('/getLivreurs',function(req,res){
 });
 app.put('/modifLivreur',function(req,res)
 {
-    new livreur().updateLivreur(req.body).then(function(results){
+    new func().updateLivreur(req.body).then(function(results){
     var toRespond = new reponse(200,"Livreur updated successfully",results);
     res.send(toRespond);
     }).catch( function(error){
@@ -168,12 +169,12 @@ app.put('/modifLivreur',function(req,res)
 })
 
 app.post('/ajoutLivreur',function(req,res){
-    new livreur().ajoutLivreur(req.body)
+    new func().ajoutLivreur(req.body)
     res.send(new reponse(200,"Livreur ajoute",null))
 });
 
 app.post('/deleteLivreur',function(req,res){
-    new livreur().deleteLivreur(req.body._id).then(function(result)
+    new func().deleteLivreur(req.body._id).then(function(result)
     {
         res.send(new reponse(200,"Livreur efface",null))
     }).catch(function(error){
@@ -205,6 +206,28 @@ app.post('/deleteResto',function(req,res){
 app.get('/findAllCommande',function(req,res){
     var fonc=new func();
     fonc.findAllCommande().then(function(results){
+    var toRespond = new reponse(200,"Data gotten successfully",results);
+    res.send(toRespond);
+    }).catch( function(error){
+        var toRespond =new reponse(400,error,null);
+        res.send(toRespond)
+    })
+});
+app.put('/assignerCommande',function(req,res){
+    var fonc=new func();
+    console.log(req.body)
+    fonc.assignerCommande(req.body).then(function(results){
+    var toRespond = new reponse(200,"Commande updated successfully",results);
+    res.send(toRespond);
+    }).catch( function(error){
+        var toRespond =new reponse(400,error,null);
+        res.send(toRespond)
+    })
+});
+app.get('/findCommandeLivreur/:id',function(req,res){
+    var fonc=new func();
+    var idLivreur = Number(req.params.id);
+    fonc.findCommandeLivreur(idLivreur).then(function(results){
     var toRespond = new reponse(200,"Data gotten successfully",results);
     res.send(toRespond);
     }).catch( function(error){

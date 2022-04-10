@@ -70,6 +70,6 @@ public isCollapsed = false;
     const error = response => {
       this.error_msg = 'Erreur connexion';
     };
-    this.restoServ.updateCommande(toUpdate).subscribe(success, error);
+    this.restoServ.updateCommande(toUpdate._id,"alivrer").subscribe(success, error);
   }
 }

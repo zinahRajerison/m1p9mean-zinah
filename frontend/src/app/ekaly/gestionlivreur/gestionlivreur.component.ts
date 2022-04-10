@@ -20,7 +20,7 @@ export class GestionlivreurComponent implements OnInit {
       this.modif=false
       const success = response => {
         if (response['status'] == 200) {
-          this.livreurs=response['data'];
+          this.livreurs=response['data'].users;
           this.resetForm()
         } else {
           this.error_msg = 'Erreur connexion';

@@ -18,6 +18,7 @@ import { GestionplatComponent } from './resto/gestionplat/gestionplat.component'
 import { GestionlivreurComponent } from './ekaly/gestionlivreur/gestionlivreur.component';
 import { GestionrestoComponent } from './ekaly/gestionresto/gestionresto.component';
 import { CommandeLivraisonComponent } from './ekaly/commande-livraison/commande-livraison.component';
+import { LivraisonComponent } from './livreur/livraison/livraison.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -35,7 +36,8 @@ const routes: Routes =[
     { path: 'resto/plats',     component: GestionplatComponent },
     { path: 'ekaly/livreurs',     component: GestionlivreurComponent },
     { path: 'ekaly/restos',     component: GestionrestoComponent },
-    { path: 'ekaly/commande',     component: CommandeLivraisonComponent }
+    { path: 'ekaly/commande',     component: CommandeLivraisonComponent },
+    { path: 'livreur/commande',     component: LivraisonComponent }
 ];
 
 @NgModule({

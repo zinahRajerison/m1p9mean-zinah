@@ -14,10 +14,12 @@ export class RestoService {
     // const options = this.toolServ.formOption();
     return this.http.get(base_url+'/findCommande/'+idResto);
   }
-  updateCommande(toUpdate)
+  updateCommande(toUpdate,status)
   {
+    console.log("livraison"+toUpdate)
     let body : any = {
-      '_id' : toUpdate._id  
+      '_id' : toUpdate,
+      'status':status 
     };
     return this.http.put(base_url+'/updateCommande',body);
   }

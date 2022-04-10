@@ -4,12 +4,9 @@
     <div class="row">
         <div class="col-3">
             <nav class="nav flex-column">
-                <a class="nav-link active" href="/ekaly/livreurs">Gestion livreurs</a>
-                <a class="nav-link " href="/ekaly/restos">Gestion restos</a>
-                <a class="nav-link" href="/ekaly/benefice">Benefice</a>
+                <a class="nav-link active" href="/ekaly/livreurs">Livraison</a>
             </nav>
         </div>
-        
         <div class="col-6">
             <div class="table-responsive">
                 <table class="table table-shopping" ng-init="total=0">
@@ -38,39 +35,13 @@
                                 </ul>
                             </td>
                             <td class="td-actions">
-                                <button type="button" rel="tooltip" data-placement="left" title="Faire livrer" class="btn btn-neutral btn-just-icon" (click)="openAssignation(content,i)">
-                                   <i class="now-ui-icons files_paper"></i>
+                                <button type="button" rel="tooltip" data-placement="left" title="Faire livrer" class="" (click)="livrer(commande._id)">
+                                    Livrer
                                 </button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                
-                <ng-template #content let-modal>
-                    <div class="modal-header">
-                      <h4 class="modal-title" id="modal-basic-title">Assigner a un livreur</h4>
-                      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                            <label for="firstname">Livreur</label>
-                            <div class="input-group">
-                                <input type="hidden" name="idCommande" [(ngModel)]="idCommande" value="index">
-                                <select  [(ngModel)] = "idLivreur" name="idLivreur" >
-                                    <option *ngFor="let livreur of livreurs; let i=index" [value]="i" >{{livreur.username}}</option>
-                                </select>
-                            </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Annuler</button>
-                        <button data-dismiss="modal" class="btn btn-info" type="submit"(click)="assigner()">Submit</button>
-                    </div>
-                </ng-template>
             </div>
         </div>
         <div class="col-3"></div>
@@ -99,7 +70,8 @@
         </nav>
         <div class="copyright">
             &copy;
-           Rajerison Lalao Zinah
+            Rajerison Lalao Zinah
         </div>
     </div>
 </footer>
+    

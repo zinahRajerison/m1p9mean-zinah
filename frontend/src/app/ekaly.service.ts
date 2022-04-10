@@ -18,6 +18,16 @@ export class EkalyService {
     // const options = this.toolServ.formOption();
     return this.http.get(base_url+'/findAllCommande');
   }
+  assignerCommande(livreur,commande){
+    let body: any ={
+      '_id':commande._id,
+      'toUpdate': {
+        'livreur':livreur._id,
+        'status':"enlivraison"
+      }
+    }
+    return this.http.put(base_url+'/assignerCommande',body);
+  }
   ajoutLivreur(username,mail,mdp)
   {
     let body: any ={
@@ -90,5 +100,9 @@ export class EkalyService {
     }
     console.log(body)
     return this.http.post(base_url+'/deleteResto',body)
+  }
+  getCommandeLivreur(idlivreur) {
+    // const options = this.toolServ.formOption();
+    return this.http.get(base_url+'/findCommandeLivreur/'+idlivreur);
   }
 }
