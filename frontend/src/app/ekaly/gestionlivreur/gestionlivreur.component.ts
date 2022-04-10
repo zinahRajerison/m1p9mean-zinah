@@ -17,10 +17,10 @@ export class GestionlivreurComponent implements OnInit {
     constructor(public LivreurServ:EkalyService) { }
   
     ngOnInit(): void {
-      this.modif=false
       const success = response => {
         if (response['status'] == 200) {
           this.livreurs=response['data'].users;
+          console.log("data"+this.livreurs)
           this.resetForm()
         } else {
           this.error_msg = 'Erreur connexion';
@@ -80,7 +80,6 @@ export class GestionlivreurComponent implements OnInit {
     }
     modiflivreur()
     {
-       
         const success = response => {
           if (response['status'] == 200) {
             this.livreurs[this.index]=this.livreur
@@ -101,6 +100,7 @@ export class GestionlivreurComponent implements OnInit {
     }
     resetForm() {
       this.livreur = {username: '', mail: '', mdp: ''};
+      this.modif=false
      }
   }
   interface Livreur{
