@@ -22,7 +22,7 @@ import { LivraisonComponent } from './livreur/livraison/livraison.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'index', pathMatch: 'full' },
-    { path: 'index',                component: ComponentsComponent },
+    { path: 'index',                component: LandingComponent },
     { path: 'nucleoicons',          component: NucleoiconsComponent },
     { path: 'examples/landing',     component: LandingComponent },
     { path: 'examples/login',       component: LoginComponent },
@@ -32,6 +32,7 @@ const routes: Routes =[
     { path: 'examples/plat/:id',     component: PlatComponent },
     { path: 'examples/panier',     component: PanierComponent },
     { path: 'examples/validationCommande',     component: ValidationCommandeComponent },
+    { path: 'examples/validationCommande/:id',     component: ValidationCommandeComponent },
     { path: 'resto/commande',     component: TraitementCommandeComponent },
     { path: 'resto/plats',     component: GestionplatComponent },
     { path: 'ekaly/livreurs',     component: GestionlivreurComponent },

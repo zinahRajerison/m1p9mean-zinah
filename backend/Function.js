@@ -109,7 +109,7 @@ class Function{
                 .then(result => {
                     var found=result[0].users[0]
                     var toreturn={
-                        id:found._id,
+                        _id:found._id,
                         username:found.username,
                         mail:found.mail
                     }

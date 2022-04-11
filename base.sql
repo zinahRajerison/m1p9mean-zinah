@@ -86,3 +86,10 @@ db.typeuser.aggregate([
 
 
 mongodb+srv://ekalyUser:<password>@cluster0.ut6sd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
+statusLivraison:
+avalider
+encours
+alivrer
+enlivraison
+livre

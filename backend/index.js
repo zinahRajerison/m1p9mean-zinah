@@ -90,9 +90,12 @@ app.get('/findPlat/:id',function(req,res){
 
 app.post('/insertCommande',function(req,res){
     var connex=new helper();
-    console.log(req.body)
-    connex.insert(req.body,'commande')
-    res.send(new reponse(200,"Commande validee",null))
+    connex.insert(req.body,'commande').then(function(result){
+        console.log(result);
+        res.send(new reponse(200,"Commande validee",result))
+    }).catch(function(err){
+        res.send(new reponse(400,err,null))
+    })
 });
 app.get('/findCommande/:id',function(req,res){
     var fonc=new func();

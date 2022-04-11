@@ -79,7 +79,7 @@ export class ClientService {
       'client':sessionStorage.getItem("personne"),
       'lieuLivraison':lieuLivraison,
       'plats':paniers,
-      'status':'encours',
+      'status':'enattente',
       'dateCommande': Date.now(),
       'livreur':0
     };
@@ -102,13 +102,13 @@ export class ClientService {
     }
     return this.http.post(base_url + '/rechercherPlat', body);
   }
-  sendMail(mail){
+  sendMail(mail,idCommande){
     console.log(mail)
     let body:any={
       "mail":mail,
       "mailContent":{
           "subject":"Validation",
-          "text":"Cliquez ce lien pour valider votre derniere commande sur e-kaly https://m1p9mean-zinah.herokuapp.com/examples/validationCommande"
+          "text":"Cliquez ce lien pour valider votre derniere commande sur e-kaly https://m1p9mean-zinah.herokuapp.com/examples/validationCommande/"+idCommande
       }
     }
     return this.http.post(base_url + '/mail', body);

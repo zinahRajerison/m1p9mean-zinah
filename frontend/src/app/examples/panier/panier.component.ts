@@ -18,31 +18,7 @@ public gfg = false;
     this.paniers=this.ClientServ.getPanier();
   }
   validerCommande(){
-    var user=sessionStorage.getItem("personne");
-    if(user==null)
-    {
-        alert("Veuillez d'abord vous connectez pour valider la commande");
-        this.router.navigate(['/examples/login']);
-    }
-    else{
-      var Juser= JSON.parse(user)
-      const success = response => {
-        if (response['status'] == 200) {
-        alert("Veuillez confirmer votre commande via email");
-        // this.router.navigate(['/examples/validationCommande']);
-          // redirection
-          // this.router.navigate(['/menu-jour']);
-        } else {
-          this.error_msg = 'Erreur connexion';
-        }
-        console.log(response);
-      };
-
-      const error = response => {
-        this.error_msg = 'Erreur connexion';
-      };
-      this.ClientServ.sendMail(Juser.mail).subscribe(success, error);
-      }
+    this.router.navigate(['/examples/validationCommande']);
   }
   enlever(idResto,idPlat)
   {

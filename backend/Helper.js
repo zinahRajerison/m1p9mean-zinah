@@ -46,16 +46,20 @@ class Helper{
         )
     }
     insert = function(ainserer,table){
-        this.seConnecter().then(function(db){
-            const test = db.collection(table)
-            test.insertOne(ainserer)
-            .then(result => {
-                console.log(result)
-            })
-            .catch(error => console.error(error))
-        }).catch(
-            error => console.log("Connexion base de donnee echouee")
-        )
+        return new Promise(function(resolve,reject){
+            new Helper().seConnecter().then(function(db){
+                console.log(ainserer)
+                const test = db.collection(table)
+                test.insertOne(ainserer)
+                .then(result => {
+                    console.log("huhu");
+                    resolve(result.insertedId)
+                })
+                .catch(error => console.error(error))
+            }).catch(
+                error => console.log("Connexion base de donnee echouee")
+            )
+        })
     }
     findMaxIndex = function(db,idUser)
     {
