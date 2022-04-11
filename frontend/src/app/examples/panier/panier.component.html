@@ -58,13 +58,12 @@
                             <tr *ngFor="let panier of paniers; let i=index">
                                 <td>{{i+1}}</td>
                                 <td>
-                                    <div class="img-container">
-                                        <img src="" alt="..." width="20px">
+                                    <div class="img-space">
+                                        <img [src]="panier.img" width="50px"/>
                                     </div>
                                 </td>
                                 <td class="td-name">
-                                    <a href="#jacket">{{panier.nom}}</a>
-                                    <br><small>by Dolce&amp;Gabbana</small>
+                                    <a href="#">{{panier.nom}}</a>
                                 </td>
                                 <td class="td-number">
                                     {{panier.prix}} <small>Ar</small>

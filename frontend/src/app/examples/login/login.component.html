@@ -24,7 +24,8 @@
                           <input type="password" placeholder="Mot de passe" class="form-control" [(ngModel)]="mdp" name="mdp" />
                       </div>
                       <div class="input-group form-group-no-border input-lg" >
-                        <select class="form-control" id="exampleFormControlSelect1"  [(ngModel)]="typeuser" name="typeuser">
+                        <select class="form-control " [(ngModel)]="typeuser" name="typeuser" data-style="select-with-transition btn-primary btn-round" title="Single Select" data-size="7">
+                        <!-- <select class="form-control"  [(ngModel)]="typeuser" name="typeuser"> -->
                           <option value="1" selected>Client</option>
                           <option value="2">Responsable e-kaly</option>
                           <option value="3">Livreur</option>
