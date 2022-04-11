@@ -55,8 +55,12 @@ class Resto{
                 { $project: { max: 1, _id:0 } }
               ]).toArray()
             .then(function(result){
-                console.log(result)
-                resolve(result[0].max)
+                if((result[0])==null){
+                    resolve(0)
+                }
+                else{
+                    resolve(result[0].max)
+                }
             }).catch(function(error){
                 reject(error)
             })
@@ -81,8 +85,8 @@ class Resto{
     seLogger =function(mail,mdp){
         return new Promise(function(resolve,reject){
             new helper().seConnecter().then(function(db){
-                // var nvmdp=md5(mdp)
-                var query = {"responsable.mail":mail,"responsable.mdp":mdp}
+                var nvmdp=md5(mdp)
+                var query = {"responsable.mail":mail,"responsable.mdp":nvmdp}
                 console.log(query)
                 db.collection('resto').findOne(query)
                 .then(result => {
@@ -94,5 +98,22 @@ class Resto{
             )
         })
     }
+    
+    rechercherResto =function(arechercher){
+        return new Promise(function(resolve,reject){
+            new helper().seConnecter().then(function(db){
+                var query = { details: { $regex: new RegExp(arechercher.specialite,'i')},nomResto: { $regex: new RegExp(arechercher.nom,'i')} ,adresse: { $regex: new RegExp(arechercher.adresse,'i')} } 
+                console.log(query)
+                db.collection('resto').find(query) .toArray()
+                .then(result => {
+                    resolve(result)
+                })
+                .catch(error => console.error(error))
+            }).catch(
+                error => console.log("Connexion base de donnee echouee")
+            )
+        })
+    }
+    
 }
 module.exports=Resto

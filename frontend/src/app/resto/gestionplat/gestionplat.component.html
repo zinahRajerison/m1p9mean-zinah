@@ -19,6 +19,19 @@
                 <label for="exampleFormControlInput1">Details</label>
                 <textarea  class="form-control" id="exampleFormControlInput1" rows="3" placeholder="Details du plat" [(ngModel)]="plat.details" name="plat.details"></textarea>
             </div>
+            <label> Plat</label>
+            {{imageError}}
+            <div class="custom-file fileInputProfileWrap">
+                <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile" >
+                <div class="img-space">
+                    <ng-container *ngIf="isImageSaved; else elseTemplate">
+                        <img [src]="cardImageBase64" width="50px"/>
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                        <img src="assets/img/placeholder.png" class="img-responsive" width="50px">
+                    </ng-template>
+                </div>
+            </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Prix (<small>Ar</small>)</label>
                 <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Prix" [(ngModel)]="plat.prix" name="plat.prix">
@@ -56,8 +69,8 @@
                     <tr *ngFor="let plat of plats; let i=index">
                         <td>{{i+1}}</td>
                         <td>
-                            <div class="img-container">
-                                <img src="" alt="..." width="20px">
+                            <div class="img-space">
+                                <img [src]="plat.img" width="100px"/>
                             </div>
                         </td>
                         <td class="td-name">

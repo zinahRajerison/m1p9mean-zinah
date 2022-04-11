@@ -23,6 +23,20 @@
                 <label for="exampleFormControlInput1">Details</label>
                 <textarea type="text" class="form-control" id="exampleFormControlInput1" placeholder="Details" [(ngModel)]="resto.details" name="resto.details"></textarea>
             </div>
+            <label> Logo</label>
+            {{imageError}}
+            <div class="custom-file fileInputProfileWrap">
+                <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile" [(ngModel)]="resto.logo" name="resto.logo">
+                <div class="img-space">
+                    <ng-container *ngIf="isImageSaved; else elseTemplate">
+                        <img [src]="cardImageBase64" width="50px"/>
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                        <img src="assets/img/placeholder.png" class="img-responsive" width="50px">
+                    </ng-template>
+                </div>
+            </div>
+            <div width="200"></div>
             <div *ngIf="modif; then modifbtn else insertbtn"></div> 
             <ng-template #modifbtn>
                 <button type="submit" class="btn"(click)="modifResto()">Modifier</button>
@@ -63,8 +77,8 @@
                     <tr *ngFor="let resto of restos; let i=index">
                         <td>{{i+1}}</td>
                         <td>
-                            <div class="img-container">
-                                <img src="" alt="..." width="20px">
+                            <div class="img-space">
+                                <img [src]="resto.logo" width="100px"/>
                             </div>
                         </td>
                         <td class="td-name">

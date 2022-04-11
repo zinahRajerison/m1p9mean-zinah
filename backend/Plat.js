@@ -36,7 +36,12 @@ class Plat{
               ]).toArray()
             .then(function(result){
                 console.log(result)
-                resolve(result[0].max)
+                if((result[0])==null){
+                    resolve(0)
+                }
+                else{
+                    resolve(result[0].max)
+                }
             }).catch(function(error){
                 reject(error)
             })
@@ -70,7 +75,7 @@ class Plat{
                 console.log(query)
                 var set={
                     $set: {
-                        "plat.$.nom":plat.nom,"plat.$.details":plat.details,"plat.$.prix":plat.prix,"plat.$.benefice":plat.benefice
+                        "plat.$.nom":plat.nom,"plat.$.details":plat.details,"plat.$.prix":plat.prix,"plat.$.benefice":plat.benefice,"plat.$.img":plat.img
                     }
                 }
                 console.log(set)
@@ -78,6 +83,26 @@ class Plat{
                 )
                 .then(result => {
                     resolve(result)
+                })
+                .catch(error => console.error(error))
+            }).catch(
+                error => console.log("Connexion base de donnee echouee")
+            )
+        })
+    }
+    rechercherPlat =function(arechercher){
+        return new Promise(function(resolve,reject){
+            new helper().seConnecter().then(function(db){
+                var query = { "plat.nom": { $regex: new RegExp(arechercher.nom,'i')},"plat.prix": { $lt: arechercher.prix} ,_id:arechercher.idResto } 
+                console.log(query)
+                db.collection('resto').aggregate([
+                    { $unwind: '$plat' },
+                    { $match: query},
+                    { $group: { _id: '$_id', plat: { $push: '$plat' } } },
+                    { $project: { 'plat': 1, _id:0 } }
+                  ]) .toArray()
+                .then(result => {
+                    resolve(result[0])
                 })
                 .catch(error => console.error(error))
             }).catch(

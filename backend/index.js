@@ -235,6 +235,24 @@ app.get('/findCommandeLivreur/:id',function(req,res){
         res.send(toRespond)
     })
 });
-app.listen(process.env.PORT || 5000,function(){
+app.post('/rechercherResto',function(req,res){
+    new Resto().rechercherResto(req.body).then(function(results){
+    var toRespond = new reponse(200,"Data gotten successfully",results);
+    res.send(toRespond);
+    }).catch( function(error){
+        var toRespond =new reponse(400,error,null);
+        res.send(toRespond)
+    })
+});
+app.post('/rechercherPlat',function(req,res){
+    new plat().rechercherPlat(req.body).then(function(results){
+    var toRespond = new reponse(200,"Data gotten successfully",results);
+    res.send(toRespond);
+    }).catch( function(error){
+        var toRespond =new reponse(400,error,null);
+        res.send(toRespond)
+    })
+});
+app.listen(3000,function(){
     console.log('Example app listening on port 3000')
 });

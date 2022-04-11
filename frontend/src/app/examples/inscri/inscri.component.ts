@@ -12,6 +12,7 @@ export class InscriComponent implements OnInit {
   prenom='';
   nom='';
   mail='';
+  username=''
   mdp='';
   checkbox='';
   constructor(public clientServ:ClientService) { }
@@ -48,7 +49,7 @@ export class InscriComponent implements OnInit {
     };
     
     console.log(login);
-    this.clientServ.sinscrire(this.nom,this.prenom,this.mail,this.mdp)
+    this.clientServ.sinscrire(this.nom,this.prenom,this.mail,this.mdp,this.username)
         .subscribe(success, error);
   }
 }

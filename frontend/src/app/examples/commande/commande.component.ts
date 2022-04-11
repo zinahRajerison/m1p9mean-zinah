@@ -18,6 +18,9 @@ export class CommandeComponent implements OnInit {
   restos: any[]
   error_msg:string
   idResto:number
+  nom:string
+  specialite:string
+  lieu:string
 
   constructor(public ClientServ:ClientService) { }
 
@@ -54,5 +57,27 @@ export class CommandeComponent implements OnInit {
       body.classList.remove('profile-page');
       var navbar = document.getElementsByTagName('nav')[0];
       navbar.classList.remove('navbar-transparent');
+  }
+  Rechercher(){
+    console.log(this.nom)
+    const success = response => {
+      if (response['status'] == 200) {
+        this.restos = response["data"];
+        this.restos = this.restos.map(item => {
+          item.show = false;
+          return item;
+         })
+        // redirection
+        // this.router.navigate(['/menu-jour']);
+      } else {
+        this.error_msg = 'Erreur connexion';
+      }
+      console.log(response);
+    };
+
+    const error = response => {
+      this.error_msg = 'Erreur connexion';
+    };
+    this.ClientServ.rechercherResto(this.nom,this.specialite,this.lieu).subscribe(success, error);
   }
 }

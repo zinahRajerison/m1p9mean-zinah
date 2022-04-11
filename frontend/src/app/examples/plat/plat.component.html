@@ -12,30 +12,16 @@
                             </div>
                             <div class="col-sm-6 col-lg-3">
                                 <div class="form-group">
-                                    <input type="text" value="" placeholder="Nom du resto" class="form-control" />
+                                    <input type="text" value="" placeholder="Nom du plat" class="form-control" [(ngModel)]="nom" name="nom" />
                                 </div>
                             </div>
                             <div class="col-sm-6 col-lg-3">
                                 <div class="form-group">
-                                    <input type="text" value="" placeholder="Categorie du plat" class="form-control" />
+                                    <input type="number" value="" placeholder="Prix" class="form-control" [(ngModel)]="prix" name="prix" />
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-3">
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="form-group">
-                                    <input type="text" value="" placeholder="Nom plat" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="form-group">
-                                    <input type="number" value="" placeholder="Prix" class="form-control" />
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#button" class="btn btn-primary btn-round btn-lg" >Rechercher</a>
+                        <button class="btn btn-primary btn-round btn-lg" (click)="rechercher()">Rechercher</button>
                     </form>
             </div>
         </div>
@@ -47,7 +33,7 @@
                     <h4 class="title text-center">Plats disponibles</h4>
                     <div class="row">
                         <div class="card text-center"  style="width: 25rem;" *ngFor="let plat of plats; let i=index">
-                            <img class="card-img-top" src="assets/img/bg6.jpg" alt="Card image cap">
+                            <img class="card-img-top" [src]="plat.img" alt="Card image cap" width="200px">
                             <div class="card-body">
                                 <h4 class="card-title"> {{plat.nom}}</h4> 
                                  <p> Prix: {{plat.prix}} <small>Ar</small></p> 

@@ -107,7 +107,13 @@ class Function{
                     { $project: { 'users': 1, _id:0 } }
                   ]) .toArray()
                 .then(result => {
-                    resolve(result[0].users[0])
+                    var found=result[0].users[0]
+                    var toreturn={
+                        id:found._id,
+                        username:found.username,
+                        mail:found.mail
+                    }
+                    resolve(toreturn)
                 })
                 .catch(error => console.error(error))
             }).catch(

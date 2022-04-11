@@ -10,14 +10,15 @@ export class ClientService {
 
   constructor(public http : HttpClient, public toolServ:HelperService) { }
   
-  sinscrire(nom:any,prenom:any,mail:any,mdp:any){
+  sinscrire(nom:any,prenom:any,mail:any,mdp:any,username:any){
     // const options = this.toolServ.formOption(true);
     
     let body : any = {
       'nom' : nom,
       'prenom' : prenom,
       'mail':mail,
-      'mdp':mdp
+      'mdp':mdp,
+      'username':username
     };
     console.log(body);
     return this.http.post(base_url + '/register', body);
@@ -84,5 +85,32 @@ export class ClientService {
     };
     console.log(body);
     return this.http.post(base_url + '/insertCommande', body);
+  }
+  rechercherResto(nom,specialite,lieu){
+    let body:any={
+      "nom":nom,
+      "specialite":specialite,
+      "lieu":lieu
+    }
+    return this.http.post(base_url + '/rechercherResto', body);
+  }
+  rechercherPlats(idResto,nom,prix){
+    let body:any={
+      "nom":nom,
+      "prix":prix,
+      "idResto":idResto
+    }
+    return this.http.post(base_url + '/rechercherPlat', body);
+  }
+  sendMail(mail){
+    console.log(mail)
+    let body:any={
+      "mail":mail,
+      "mailContent":{
+          "subject":"Validation",
+          "text":"Cliquez ce lien pour valider votre derniere commande sur e-kaly https://m1p9mean-zinah.herokuapp.com/examples/validationCommande"
+      }
+    }
+    return this.http.post(base_url + '/mail', body);
   }
 }

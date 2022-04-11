@@ -12,6 +12,8 @@ idResto:number
 plats: any[]
 error_msg:string
 indexPlat:any
+nom:string
+prix:number
   constructor(private route:ActivatedRoute,public ClientServ:ClientService) { }
 
   ngOnInit(): void {
@@ -64,6 +66,28 @@ indexPlat:any
         this.ajouterPanier(panier)
       }
     }
-   
+  }
+  rechercher(){
+    console.log(this.nom)
+    const success = response => {
+      if (response['status'] == 200) {
+        this.plats = response["data"].plat;
+        console.log(this.plats);
+        this.plats = this.plats.map(item => {
+          item.show = false;
+          return item;
+         })
+        // redirection
+        // this.router.navigate(['/menu-jour']);
+      } else {
+        this.error_msg = 'Erreur connexion';
+      }
+      console.log(response);
+    };
+
+    const error = response => {
+      this.error_msg = 'Erreur connexion';
+    };
+    this.ClientServ.rechercherPlats(this.idResto,this.nom,this.prix).subscribe(success, error);
   }
 }
