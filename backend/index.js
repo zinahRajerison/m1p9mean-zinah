@@ -253,6 +253,6 @@ app.post('/rechercherPlat',function(req,res){
         res.send(toRespond)
     })
 });
-app.listen(3000,function(){
+app.listen(process.env.PORT,function(){
     console.log('Example app listening on port 3000')
 });
