@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../client.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-inscri',
@@ -15,7 +16,7 @@ export class InscriComponent implements OnInit {
   username=''
   mdp='';
   checkbox='';
-  constructor(public clientServ:ClientService) { }
+  constructor(public clientServ:ClientService,public router:Router) { }
 
   ngOnInit() {
       var body = document.getElementsByTagName('body')[0];
@@ -37,7 +38,7 @@ export class InscriComponent implements OnInit {
     const success = response => {
       if (response['status'] == 200) {
         this.error_msg=response['message'];
-        // redirection
+        this.router.navigate(['/examples/login']);
       } else {
         this.error_msg = 'Erreur connexion';
       }

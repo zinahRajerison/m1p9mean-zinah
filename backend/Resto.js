@@ -98,7 +98,6 @@ class Resto{
             )
         })
     }
-    
     rechercherResto =function(arechercher){
         return new Promise(function(resolve,reject){
             new helper().seConnecter().then(function(db){
@@ -107,6 +106,30 @@ class Resto{
                 db.collection('resto').find(query) .toArray()
                 .then(result => {
                     resolve(result)
+                })
+                .catch(error => console.error(error))
+            }).catch(
+                error => console.log("Connexion base de donnee echouee")
+            )
+        })
+    }
+    
+    getStatParJour =function(idResto){
+        return new Promise(function(resolve,reject){
+            new helper().seConnecter().then(function(db){
+                var query = { 'plats.idResto': idResto ,'status':"livre" } 
+                var group= { _id:  { day: { $dayOfYear: {$toDate:"$dateCommande"} }},
+                             totalAmount: { $sum: { $multiply: ["$plats.benefice","$plats.nbre" ] } } }
+                console.log(query)
+                console.log(group)
+                db.collection('resto').aggregate([
+                    {$unwind: '$plats' },
+                    { $match: query },
+                    { $group: group },
+                    { $project: { 'totalAmount': 1, _id:1 } }
+                ]) .toArray()
+                .then(result => {
+                    resolve(result[0])
                 })
                 .catch(error => console.error(error))
             }).catch(

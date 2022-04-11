@@ -1,5 +1,6 @@
 import { Component, OnInit ,ElementRef} from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { RouteConfigLoadEnd, Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -10,7 +11,7 @@ export class NavbarComponent implements OnInit {
     private sidebarVisible: boolean;
     public login : boolean;
 
-    constructor(public location: Location, private element : ElementRef) {
+    constructor(public location: Location, private element : ElementRef,public router:Router) {
         this.sidebarVisible = false;
         if(sessionStorage.getItem('personne')==null)
         {
@@ -57,6 +58,11 @@ export class NavbarComponent implements OnInit {
         else {
             return false;
         }
+    }
+    seDeconnecter(){
+        localStorage.clear();
+        sessionStorage.clear();
+        this.router.navigate(['/index']);
     }
 
 }

@@ -25,7 +25,6 @@ app.get('/',function(req,res){
 
 app.post('/register',function(req,res){
     var connex=new helper();
-    console.log(req.body)
     connex.sinscrire(req.body,'typeuser')
     res.send(new reponse(200,"Inscription terminee",null))
 });
@@ -249,6 +248,15 @@ app.post('/rechercherResto',function(req,res){
 });
 app.post('/rechercherPlat',function(req,res){
     new plat().rechercherPlat(req.body).then(function(results){
+    var toRespond = new reponse(200,"Data gotten successfully",results);
+    res.send(toRespond);
+    }).catch( function(error){
+        var toRespond =new reponse(400,error,null);
+        res.send(toRespond)
+    })
+});
+app.post('/getStatParJour',function(req,res){
+    new Resto().getStatParJour(req.body.idResto).then(function(results){
     var toRespond = new reponse(200,"Data gotten successfully",results);
     res.send(toRespond);
     }).catch( function(error){

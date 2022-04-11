@@ -23,9 +23,9 @@ class Helper{
     };
     
     sinscrire = function(ainserer,table){
-        this.seConnecter().then(function(db){
+        new Helper().seConnecter().then(function(db){
             const test = db.collection(table)
-            this.findMaxIndex(db,1).then(function(max)
+            new Helper().findMaxIndex(db,1).then(function(max)
             {
                 var query= {
                     _id : 1

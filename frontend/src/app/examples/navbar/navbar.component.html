@@ -8,13 +8,7 @@
                   <span class="button-bar"></span>
               </a>
                <div ngbDropdownMenu>
-                 <a class="dropdown-header">Dropdown header</a>
-                 <a class="dropdown-item" href="#">Acheter vos plats en ligne</a>
-                 <a class="dropdown-item" href="#">Importer votre restaurant en ligne</a>
-                 <div class="dropdown-divider"></div>
-                 <a class="dropdown-item" href="#">Separated link</a>
-                 <div class="dropdown-divider"></div>
-                 <a class="dropdown-item" href="#">One more separated link</a>
+                 <a class="dropdown-header">Deconnexion</a> 
                </div>
              </div>
           </div>
@@ -37,21 +31,6 @@
                       </a>
                   </li>
                     <li class="nav-item">
-                        <div *ngIf="login; then inscription else deconnexion"></div> 
-                        <ng-template #inscription>
-                            <a class="nav-link" href="/examples/login">
-                                <i class="now-ui-icons files_paper"></i>
-                                <p> S'inscrire</p>
-                            </a>
-                        </ng-template>
-                        <ng-template #deconnexion>
-                            <a class="nav-link" href="/examples/deconnexion">
-                                <i class="now-ui-icons files_paper"></i>
-                                <p> Log out</p>
-                            </a>
-                        </ng-template>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link " href="/examples/restos" >
                             <i class="now-ui-icons arrows-1_share-66"></i>
                             <p> Acheter</p>
@@ -61,6 +40,20 @@
                         <a class="nav-link btn btn-neutral" href="/examples/panier" >
                             <i class="now-ui-icons shopping_cart-simple"></i>
                         </a>
+                    </li>
+                    <li class="nav-item">
+                        <div *ngIf="login; then inscription else deconnexion"></div> 
+                        <ng-template #inscription>
+                            <a class="nav-link" href="/examples/login">
+                                <i class="now-ui-icons files_paper"></i>
+                                <p> Se connecter</p>
+                            </a>
+                        </ng-template>
+                        <ng-template #deconnexion>
+                            <a class="btn nav-link" (click)="seDeconnecter()">
+                                <p> Deconnexion</p>
+                            </a>
+                        </ng-template>
                     </li>
                 </ul>
             </div>
